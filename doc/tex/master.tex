@@ -127,21 +127,11 @@
 \newcommand*{\IhrNachname}{Kestler}
 \newcommand*{\IhrStudiengang}{Künstliche Intelligenz}
 % Bachelorarbeit, Masterarbeit, Studienarbeit
-\newcommand*{\IhreArbeit}{Studienarbeit AR/VR}
-\newcommand*{\IhrTitelDE}{Der Igel Simulator}
-% \newcommand*{\IhrTitelEN}{Title of the study work}
-\newcommand*{\IhrBearbeitungszeitraumVON}{01. Dezember 2021}
-\newcommand*{\IhrBearbeitungszeitraumBIS}{02. Februar 2022}
-\newcommand*{\IhrErstpruefer}{Prof. Dr.-Ing. Gerald Pirkl}
-% \newcommand*{\IhrZweitpruefer}{Prof. Dr.-Ing. Franz Klug}
-% \newcommand*{\IhreFirma}{OTH Amberg-Weiden}
-% \newcommand*{\IhrFirmenbetreuer}{Prof. Dr.-Ing. Matthias Wenk}
-\newcommand*{\IhreZusammenfassung}{Zusammenfassung}
-
-\newcommand*{\IhreSchluesselwoerter}{Schlüsselwortliste}
-
-\newcommand*{\IhrAbstract}{Abstract}
-
+\newcommand*{\IhreArbeit}{Studienarbeit Deep Vision}
+\newcommand*{\IhrTitelDE}{Vergleich der YOLOX- und YOLOv8-Modelle für die Objekterkennung im Kontext des Udacity Self Driving Car-Datensatzes}
+\newcommand*{\IhrBearbeitungszeitraumVON}{21. Juni 2023}
+\newcommand*{\IhrBearbeitungszeitraumBIS}{19. Juli 2023}
+\newcommand*{\IhrErstpruefer}{Prof. Dr. phil. Tatyana Ivanovska}
 
 
 \usepackage[bookmarks, raiselinks, pageanchor, % PDF-Einstellungen
@@ -151,8 +141,7 @@
             menucolor=black]{hyperref}
 \hypersetup{pdftitle={\IhrTitelDE},%
             pdfauthor={\IhrVorname\ \IhrNachname},%
-            pdfsubject={\IhreArbeit},%
-            pdfkeywords={\IhreSchluesselwoerter}}
+            pdfsubject={\IhreArbeit}}
 
 %
 % Beginn des Textteils
@@ -205,11 +194,13 @@
   \newpage
   \pagenumbering{arabic}
   % Kapitel einfügen
-  \include{Einleitung}
+  
+  \include{chapter/introduction/introduction}
   % Hauptteil
-  \include{Spielvorstellung}
-  \include{Hauptteil}
-  \include{Ausblick}
+  \include{chapter/main/dataset}
+  \include{chapter/main/yolovx}
+  \include{chapter/main/yolov8}
+  \include{chapter/conclusion/conclusion}
   %\include{Vorlagen}
   
  

@@ -62,14 +62,17 @@ Annotations have been hand-checked for accuracy by Roboflow.
 ------------------------------------------------------------------------------------------
 ### Model
 ## YoloX
-Source: https://github.com/Megvii-BaseDetection/YOLOX
+Source:
+- https://github.com/Megvii-BaseDetection/YOLOX
+- https://arxiv.org/pdf/2107.08430.pdf
+
 
 
 ------------------------------------------------------------------------------------------
 # Yolov8
 Source:
-- https://github.com/ultralytics/ultralytics<br>
-- https://docs.ultralytics.com/models/yolov8/<br>
+- https://github.com/ultralytics/ultralytics
+- https://docs.ultralytics.com/models/yolov8/
 - https://docs.ultralytics.com
 
 
