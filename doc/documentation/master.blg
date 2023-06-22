@@ -1,0 +1,85 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: master.aux
+A level-1 auxiliary file: Einleitung.aux
+A level-1 auxiliary file: Spielvorstellung.aux
+A level-1 auxiliary file: Hauptteil.aux
+A level-1 auxiliary file: Ausblick.aux
+The style file: natdin.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: literatur.bib
+Warning--entry type for "Unity" isn't style-file defined
+--line 125 of file literatur.bib
+Warning--entry type for "GitHub" isn't style-file defined
+--line 137 of file literatur.bib
+Warning--entry type for "Trello" isn't style-file defined
+--line 149 of file literatur.bib
+Warning--entry type for "Igelrettung" isn't style-file defined
+--line 161 of file literatur.bib
+Warning--entry type for "Igel_Infos_1" isn't style-file defined
+--line 173 of file literatur.bib
+Warning--entry type for "Igel_Infos_2" isn't style-file defined
+--line 185 of file literatur.bib
+Warning--entry type for "CC0_Lizenz" isn't style-file defined
+--line 197 of file literatur.bib
+Warning--entry type for "Unity_BezierCurve_Youtube" isn't style-file defined
+--line 209 of file literatur.bib
+Warning--entry type for "freesound" isn't style-file defined
+--line 241 of file literatur.bib
+Warning--entry type for "opengameart" isn't style-file defined
+--line 253 of file literatur.bib
+Warning--to sort, need author or key in GitHub
+Warning--to sort, need author or key in Trello
+Warning--to sort, need author or key in Unity
+Warning--to sort, need author or key in Igelrettung
+Warning--to sort, need author or key in Igel_Infos_1
+Warning--to sort, need author or key in Igel_Infos_2
+Warning--to sort, need author or key in CC0_Lizenz
+Warning--to sort, need author or key in freesound
+Warning--to sort, need author or key in opengameart
+You've used 11 entries,
+            4728 wiz_defined-function locations,
+            933 strings with 7442 characters,
+and the built_in function-call counts, 3844 in all, are:
+= -- 421
+> -- 20
+< -- 37
++ -- 52
+- -- 7
+* -- 271
+:= -- 545
+add.period$ -- 11
+call.type$ -- 11
+change.case$ -- 35
+chr.to.int$ -- 9
+cite$ -- 29
+duplicate$ -- 147
+empty$ -- 364
+format.name$ -- 12
+if$ -- 883
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 66
+newline$ -- 62
+num.names$ -- 8
+pop$ -- 81
+preamble$ -- 1
+purify$ -- 57
+quote$ -- 0
+skip$ -- 198
+stack$ -- 0
+substring$ -- 187
+swap$ -- 26
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 143
+warning$ -- 9
+while$ -- 8
+width$ -- 0
+write$ -- 138
+(There were 19 warnings)

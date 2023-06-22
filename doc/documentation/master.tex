@@ -1,0 +1,237 @@
+% LaTeX-Vorlage zur Erstellung einer Abschlussarbeit in der Fakultät Elektrotechnik, Medien und Informatik an der OTH Amberg-Weiden
+% Diese Vorlage entstand im Rahmen des Kurses "LaTeX fürs Studium"
+% Aktuelle Version: v0.03bacsem
+% Stand: 18.04.2020
+%
+% Changelog:
+%
+% v0.03bacsem-us: 28.04.2020, Grafikpfad und Bibliographiemanagement 
+%                             via bibtex hinzugefügt
+% Grafikpfad für das graphicx-Paket:
+%   \graphicspath{{images/}} % hinter \usepackage{graphicx}
+% Literaturverzeichnis nach DIN:          
+%   \usepackage[square,numbers,sort]{natbib} 
+% Literaturverzeichnis am Ende:
+%   \bibliographystyle{natdin}
+%   \bibliography{literatur}
+% 
+% v0.02: 06.08.2015, Anpassung der Vorlage:
+% + Persönliche Informationen (Vorname, Name, Titel usw.) werden direkt in die PDF-Dokumenteinstellungen übernommen
+% + Korrektur der Verlinkung von Abbildungs- und Tabellenverzeichnis aus dem Inhaltsverzeichnis (phantomsection) bzw. deren Seitenzahl
+%   Besten Dank für diesen Hinweis an Jan-Olaf Becker
+% + Anpassung des Namens der Fakultät nach deren Umbenennung
+%
+% v0.01: 14.03.2012, Erstellung der Vorlage
+% oneside: legt Seitennummerierung in die Mitte -> einseitiger Druck
+% twoside: legt Seitennummerierung abh. von Seite an rechten/linken Rand -> vorder-/rueckseite Druck
+\documentclass[12pt,oneside]{report}
+\usepackage[T1]{fontenc}		% Einstellungen fuer Umlaute usw.
+\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{parskip}			% Einstellungen fuer Absaetze: Abstand statt Einrueckung
+
+\usepackage[a4paper,			% Papierformat A4
+	    left=2.0cm,				% linker Rand
+	    right=2.0cm,			% rechter Rand
+	    top=2.0cm,				% oberer Rand
+	    bottom=2.0cm,			% unter Rand
+	    marginparsep=5mm,		% Abstand der Randnotizen
+	    marginparwidth=10mm, 	% Breite der Randnotizen
+	    headheight=7mm,			% Hoehe der Kopfzeile
+	    headsep=1.2cm,			% Abstand der Kopfzeile
+	    footskip=1.5cm,			% Abstand der Fusszeile
+	    includeheadfoot]{geometry}
+
+\usepackage{fancyhdr}						% Konfiguration von Kopf- und Fusszeilen
+\pagestyle{fancy}							% Seitenstil 'fancy'
+\fancyhf{}									% vorhandene Einstellungen loeschen
+\setlength{\headwidth}{\textwidth}			% Kopf- und Fusszeile so breit wie der Haupttext
+\fancyfoot[R]{\thepage} 					% Festlegung des Seitenstils: Seitenzahlen in der Fusszeile rechts
+\fancyfoot[L]{\leftmark}					% Kapitelnr. und -Bezeichnung in der Fusszeile links
+\fancyhead[R]{\IhreArbeit}					% "Bachelorarbeit" in der Kopfzeile rechts
+\fancyhead[L]{\IhrVorname\ \IhrNachname}	% Vorname und Name in der Kopfzeile links
+\renewcommand{\chaptermark}[1]{			% Definition der Ausgabe des Kapitels
+  \markboth{Kapitel \thechapter. #1}{}}
+\renewcommand{\headrulewidth}{0.5pt}		% Trennlinie zwischen Kopfzeile und Haupttext
+\renewcommand{\footrulewidth}{0.5pt}		% Trennlinie zwischen Haupttext und Fusszeile
+\fancypagestyle{plain}{					% Anpassung des Seitenstils 'plain' bei Beginn neuer Kapitel
+  \fancyhf{}								% Vorbelegung loeschen
+  \fancyfoot[C]{\thepage}					% Seitenzeilen in der Fusszeile mittig
+  \fancyhead[R]{\IhreArbeit}				% "Bachelorarbeit" in der Kopfzeile rechts
+  \fancyhead[L]{\IhrVorname\ \IhrNachname}	% Vorname und Name in der Kopfzeile links
+}
+
+%\usepackage{amsmath}			% Pakete fuer den Mathematikmodus
+%\usepackage{amssymb}
+\usepackage[intlimits]{empheq}
+
+\usepackage[sc]{mathpazo}		% Schriftart Palatino fuer Haupttext und Mathematikmodus
+\usepackage{pifont}				% zusaetzliche Symbole
+
+\usepackage{setspace}
+\setstretch{1.25}
+
+\usepackage[format=hang,		% Einstellung fuer Bildunterschriften
+            font={footnotesize},
+            labelfont={bf},
+            margin=1cm,
+            aboveskip=5pt,
+            position=bottom]{caption}
+
+\usepackage{graphicx}	   % Einbinden von Grafiken (jpg, png, pdf, ...)
+\graphicspath{{images/}}   % Suchpfad für Grafikdateien
+
+\usepackage[svgnames,table,hyperref]{xcolor} 	% Verwendung von Farben
+\usepackage{tikz}								% Erstellen von Grafiken
+\usetikzlibrary{positioning,arrows,plotmarks} % TikZ-Bibliotheken
+%\usepackage{pgfplots}                           % Darstellung von Plots, Funktionen, Graphen usw.
+
+%
+% Weitere Pakete
+%
+\usepackage{listings}			% Darstellung von Quellcode
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{myblue}{rgb}{0.0,0.0,1.0}
+\definecolor{myred}{rgb}{1.0,0.3,0.0}
+
+\DeclareMathOperator{\arctantwo}{arctan2}
+
+\usepackage{leftidx}
+
+\lstset{language = Python,
+	numbers = none,
+	basicstyle = \small\ttfamily,
+	keywordstyle = \color{myblue},
+	commentstyle = \color{mygreen},
+	stringstyle = \color{myred},
+	columns = flexible,
+	showstringspaces = false,
+	frame = single,
+	morekeywords={as, family}
+}
+\usepackage{float}
+\usepackage[square,numbers,sort]{natbib} % Referenzen
+%
+%\usepackage[european, siunitx]{circuitikz}	% Darstellung von Schaltungen
+%
+%\usepackage{enumerate}			% Formatierung nummerierter Listen
+
+\usepackage{microtype,relsize}					% Wird verwendet, um Nachnamen auf Titelseite gesperrt darzustellen
+\newcommand*{\Sperren}[1]{\textls*[100]{#1}}
+
+% 
+% Persoenliche Angaben
+% 
+\newcommand*{\IhrVorname}{André}
+\newcommand*{\IhrNachname}{Kestler}
+\newcommand*{\IhrStudiengang}{Künstliche Intelligenz}
+% Bachelorarbeit, Masterarbeit, Studienarbeit
+\newcommand*{\IhreArbeit}{Studienarbeit AR/VR}
+\newcommand*{\IhrTitelDE}{Der Igel Simulator}
+% \newcommand*{\IhrTitelEN}{Title of the study work}
+\newcommand*{\IhrBearbeitungszeitraumVON}{01. Dezember 2021}
+\newcommand*{\IhrBearbeitungszeitraumBIS}{02. Februar 2022}
+\newcommand*{\IhrErstpruefer}{Prof. Dr.-Ing. Gerald Pirkl}
+% \newcommand*{\IhrZweitpruefer}{Prof. Dr.-Ing. Franz Klug}
+% \newcommand*{\IhreFirma}{OTH Amberg-Weiden}
+% \newcommand*{\IhrFirmenbetreuer}{Prof. Dr.-Ing. Matthias Wenk}
+\newcommand*{\IhreZusammenfassung}{Zusammenfassung}
+
+\newcommand*{\IhreSchluesselwoerter}{Schlüsselwortliste}
+
+\newcommand*{\IhrAbstract}{Abstract}
+
+
+
+\usepackage[bookmarks, raiselinks, pageanchor, % PDF-Einstellungen
+            hyperindex, colorlinks,
+            citecolor=black, linkcolor=black,
+            urlcolor=black, filecolor=black,
+            menucolor=black]{hyperref}
+\hypersetup{pdftitle={\IhrTitelDE},%
+            pdfauthor={\IhrVorname\ \IhrNachname},%
+            pdfsubject={\IhreArbeit},%
+            pdfkeywords={\IhreSchluesselwoerter}}
+
+%
+% Beginn des Textteils
+%
+\begin{document}
+    \pagenumbering{roman}
+  \thispagestyle{empty}
+  \begin{center}
+    \Large
+    Ostbayerische Technische Hochschule Amberg-Weiden\\
+    Fakultät Elektrotechnik, Medien und Informatik\\[1cm]
+    Studiengang \IhrStudiengang\\[1cm]
+    \textbf{\IhreArbeit}\\[1cm]
+    von\\[1cm]
+    \IhrVorname\ \Sperren{\textbf{\IhrNachname}}\\[1cm]
+    \textbf{\IhrTitelDE}\\[1cm]
+%    \IhrTitelE
+  \end{center}
+  \vspace*{2.5cm}
+  \begin{tabbing}
+    \underbar{Bearbeitungszeitraum:}\qquad\= von\qquad\=\IhrBearbeitungszeitraumVON\\
+                                          \> bis      \>\IhrBearbeitungszeitraumBIS
+  \end{tabbing}
+  \vspace*{1cm}
+  \underbar{1. Prüfer:}\qquad\IhrErstpruefer\par 
+ % \underbar{2. Prüfer:}\qquad\IhrZweitpruefer
+    \tableofcontents
+    \thispagestyle{empty}
+ 	\newpage
+  
+% ----------------------------------------------------------------------  
+  
+%  \chapter*{Symbole, Formelzeichen und Einheiten}
+ % \begin{tabular}{ll}
+ % 	%$I$ & Einheitsmatrix\\
+ % 	%GB     & Gigabyte ($10^9$ Bytes)\\
+ % \end{tabular}
+ % \newpage
+  
+% ----------------------------------------------------------------------  
+  \chapter*{Abkürzungsverzeichnis}
+    \begin{tabular}{ll}
+    	%KI	& Künstliche Intelligenz\\
+    	%TCP & Tool Center Point\\  		
+    	AR & Augmented Reality\\
+    	VR & Virtual Reality\\
+    	MR & Mixed Reality
+  	\end{tabular}
+
+  \newpage
+  \pagenumbering{arabic}
+  % Kapitel einfügen
+  \include{Einleitung}
+  % Hauptteil
+  \include{Spielvorstellung}
+  \include{Hauptteil}
+  \include{Ausblick}
+  %\include{Vorlagen}
+  
+ 
+  % Literaturverzeichnis
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Literaturverzeichnis}
+  \bibliographystyle{natdin}
+  \bibliography{literatur}
+  \newpage
+  
+  % Abbildungsverzeichnis
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+  \listoffigures
+  \newpage
+
+  %Tabellenverzeichnis
+  %\phantomsection
+  %\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+  %\listoftables
+  %\newpage
+  
+  %Anhang
+ %\include{anhang}
+\end{document}    
