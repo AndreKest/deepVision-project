@@ -35,7 +35,9 @@ pip install -r requirements.txt
 
 ------------------------------------------------------------------------------------------
 ### Dataset
-Source: https://www.kaggle.com/datasets/sshikamaru/udacity-self-driving-car-dataset
+Source: 
+- https://www.kaggle.com/datasets/sshikamaru/udacity-self-driving-car-dataset
+- https://public.roboflow.com/object-detection/self-driving-car
 
 The dataset contains 97,942 labels across 11 classes and 15,000 images. There are 1,720 null examples (images with no labels).
 
@@ -46,7 +48,7 @@ Annotations have been hand-checked for accuracy by Roboflow.
 
 | Class                     | Count | Index |
 |---------------------------|:-----:|:-----:|
-| cat                       | 64399 |  0    |
+| car                       | 64399 |  0    |
 | pedestrian                | 10806 |  1    |
 | trafficLight-Red          |  6870 |  2    |
 | trafficLight-Green        |  5465 |  3    |
