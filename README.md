@@ -60,6 +60,15 @@ Annotations have been hand-checked for accuracy by Roboflow.
 | trafficLight-Yellow       |  272  |  9    |
 | trafficLight-YellowLeft   |  14   |  10   |
 
+Changed to
+| Class                     | Count | Index |
+|---------------------------|:-----:|:-----:|
+| car                       | 64399 |  0    |
+| pedestrian                | 10806 |  1    |
+| trafficLight              | 17250 |  2    |
+| truck                     |  3623 |  3    |
+| biker                     |  1846 |  4    |
+
 
 ------------------------------------------------------------------------------------------
 ### Model
