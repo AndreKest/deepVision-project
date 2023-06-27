@@ -76,6 +76,7 @@ Changed to
 Source:
 - https://github.com/Megvii-BaseDetection/YOLOX
 - https://arxiv.org/pdf/2107.08430.pdf
+- Training: https://towardsdatascience.com/object-detection-neural-network-building-a-yolox-model-on-a-custom-dataset-77d29d85ae7f
 
 
 
