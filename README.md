@@ -79,9 +79,44 @@ Source:
 - Training: https://towardsdatascience.com/object-detection-neural-network-building-a-yolox-model-on-a-custom-dataset-77d29d85ae7f
 
 
+### COCO Dataset Format
+{
+    “image”: [{
+        “id”: int,
+        “width”: int,
+        “height”: int,
+        “file_name: str,
+        “license”: int,
+        “flickr_url”: str,
+        “coco_url”: str,
+        “date_captured”: datetime
+    },
+    ... ]
+    “annotations”: [{
+        “id”: int,
+        “image_id: int”,
+        “category_id”: int
+        “area”: float,
+        “bbox”: [x,y,width,height],
+        “iscrowd”: 0 or 1
+    },
+    ... ]
+}
+
+
+Train:
+!python3 train.py -f yolox_m.py -d 1 -b 8 --fp16 -o -c weights/yolox_m.pth
+
+
+Evaluation:
+!python3 eval.py -n yolox-m -c YOLOX_outputs/yolox_m_100_epoch_no_Oversample/weights/latest_ckpt.pth -b 8 -d 1 --conf 0.001 -f yolox_m.py
+
+
+
+
 
 ------------------------------------------------------------------------------------------
-# Yolov8
+## Yolov8
 Source:
 - https://github.com/ultralytics/ultralytics
 - https://docs.ultralytics.com/models/yolov8/
