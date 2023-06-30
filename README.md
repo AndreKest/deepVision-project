@@ -125,3 +125,13 @@ Source:
 
 
 ------------------------------------------------------------------------------------------
+## Test Images
+Test Bilder sind aus dem CityScapes Datensatz, da der Udacity Datensatz nur 15000 Bilder enthält, habe ich diesen nur in Train und Val aufgeteilt.
+Source:
+- https://www.cityscapes-dataset.com
+
+
+
+
+
+------------------------------------------------------------------------------------------
