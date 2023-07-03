@@ -1,7 +1,9 @@
 .DS_Store
+*.zip
+
 tmp/*
 data/*
-*.zip
+utls/*
 
 src/yolov8Model/datasets/*
 src/yolov8Model/weights/*
