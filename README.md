@@ -130,7 +130,8 @@ Source:
 - https://github.com/ultralytics/ultralytics
 - https://docs.ultralytics.com/models/yolov8/
 - https://docs.ultralytics.com/modes/
-- https://docs.ultralytics.com
+
+
 
 
 ### Yolo Dataset Format
