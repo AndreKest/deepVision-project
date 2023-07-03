@@ -1,13 +1,26 @@
 \babel@toc {ngerman}{}
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Aufgabenstellung}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Projektmanagement}{1}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}GitHub}{1}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Trello}{1}{subsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.2.3}Discord}{2}{subsection.1.2.3}%
-\contentsline {subsection}{\numberline {1.2.4}Unity}{2}{subsection.1.2.4}%
-\contentsline {chapter}{\numberline {2}Datensatz}{3}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Modell 1: YoloX}{4}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Modell 1: Yolov8}{5}{chapter.4}%
+\contentsline {section}{\numberline {1.2}\IeC {\"U}bersicht}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Datensatz}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Klassenaufteilung}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Aufbau}{2}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Rohdaten}{2}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}YOLOX}{2}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}YOLOv8}{2}{subsection.2.2.3}%
+\contentsline {chapter}{\numberline {3}Modell 1: YOLOX}{3}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Architektur}{3}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Verlustfunktion}{3}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Modellauswertung}{3}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Modell 1: YOLOv8}{4}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Architektur}{4}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Verlustfunktion}{4}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Modellauswertung}{4}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{5}{chapter.5}%
 \contentsline {chapter}{Literaturverzeichnis}{6}{section*.3}%
 \contentsline {chapter}{Abbildungsverzeichnis}{7}{section*.5}%
+\contentsline {chapter}{\numberline {6}Anhang}{8}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Ordnerstruktur}{8}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{8}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{8}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{8}{section.6.4}%
