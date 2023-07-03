@@ -1,0 +1,12 @@
+train: ../datasets/dataYolov8/train/images
+val: ../datasets/dataYolov8/val/images
+
+nc: 5
+
+# Classes
+names:
+  0: 'car'
+  1: 'pedestrian'
+  2: 'trafficLight'
+  3: 'truck'
+  4: 'biker'

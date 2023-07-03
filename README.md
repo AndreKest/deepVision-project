@@ -8,29 +8,37 @@ Train the two Yolo networks (YolovX and Yolov8) with the Udacity Self Driving Ca
 
 ------------------------------------------------------------------------------------------
 ### Folder structure
-.<br>
-├── data                    &emsp;# Dataset (images and annotation)<br>
-├── src                     &emsp;# Main data ipynb and py files<br>
-├── doc                     &emsp;# Documentation of the project<br>
-├── requirements.txt        &emsp;# Requirements for installation<br>
+deepvision-project/  
+├── data                    &emsp;# Dataset (images and annotation)  
+&emsp; ├── dataFiltered     &emsp;# Filtered data (changed classes)  
+&emsp; ├── dataRaw          &emsp;# Raw data  
+&emsp; ├── dataYolov8       &emsp;# Data in format for Yolov8  
+&emsp; └── dataYoloX        &emsp;# Data in format for YoloX  
+├── src                     &emsp;# Main data ipynb and py files  
+&emsp; ├── dataset          &emsp;# Files for dataset (convertion, preprocessing)  
+&emsp; ├── yolov8Model      &emsp;# Yolov8 stuff  
+&emsp; └── yolov8Model      &emsp;# YoloX stuff  
+├── doc                     &emsp;# Documentation of the project  
+├── utils                   &emsp;# YoloX GitHub Repository data  
+├── .gitignore              &emsp;# Gitignore file for Repository  
+├── requirements.txt        &emsp;# Requirements for installation  
 └── readme.md<br>
 
 
 ------------------------------------------------------------------------------------------
 ### Version:
 
-Python: 3.11.3<br>
-NumPy
-Matplotlib
-PyTorch
-Torchvision
+Python: 3.8.16  
+NumPy: 1.21.5  
+Matplotlib: 3.5.1  
+PyTorch: 1.10.2+cu111  
+Torchvision: 0.11.3+cu111  
+Torchaudio: 0.10.2+cu111  
+Ultralytics: 8.0.124  
+Tensorboard: 2.11.2  
 
-
-------------------------------------------------------------------------------------------
-### Install packages
-pip install -r requirements.txt
-
-
+--> More information about packages and versions are in **requirements.txt**  
+Install: pip install -r requirements.txt
 
 
 ------------------------------------------------------------------------------------------
@@ -59,6 +67,7 @@ Annotations have been hand-checked for accuracy by Roboflow.
 | trafficLight-GreenLeft    |  310  |  8    |
 | trafficLight-Yellow       |  272  |  9    |
 | trafficLight-YellowLeft   |  14   |  10   |
+<br>
 
 Changed to
 | Class                     | Count | Index |
@@ -120,18 +129,11 @@ Evaluation:
 Source:
 - https://github.com/ultralytics/ultralytics
 - https://docs.ultralytics.com/models/yolov8/
+- https://docs.ultralytics.com/modes/
 - https://docs.ultralytics.com
 
 
-
-------------------------------------------------------------------------------------------
-## Test Images
-Test Bilder sind aus dem CityScapes Datensatz, da der Udacity Datensatz nur 15000 Bilder enthält, habe ich diesen nur in Train und Val aufgeteilt.
-Source:
-- https://www.cityscapes-dataset.com
-
-
-
+### Yolo Dataset Format
 
 
 ------------------------------------------------------------------------------------------
