@@ -1,5 +1,5 @@
 # deepVision-project
-Computer Vision project to detect objects with YolovX and Yolov8
+Computer Vision project to detect objects with YOLOX and YOLOv8
 
 Was build for a project at my university.
 
@@ -17,7 +17,7 @@ deepvision-project/
 ├── src                     &emsp;# Main data ipynb and py files  
 &emsp; ├── dataset          &emsp;# Files for dataset (convertion, preprocessing)  
 &emsp; ├── yolov8Model      &emsp;# Yolov8 stuff  
-&emsp; └── yolov8Model      &emsp;# YoloX stuff  
+&emsp; └── yoloxModel       &emsp;# YoloX stuff  
 ├── doc                     &emsp;# Documentation of the project  
 ├── utils                   &emsp;# YoloX GitHub Repository data  
 ├── .gitignore              &emsp;# Gitignore file for Repository  
@@ -81,7 +81,7 @@ Changed to
 
 ------------------------------------------------------------------------------------------
 ### Model
-## YoloX
+## YOLOX
 Source:
 - https://github.com/Megvii-BaseDetection/YOLOX
 - https://arxiv.org/pdf/2107.08430.pdf
@@ -125,7 +125,7 @@ Evaluation:
 
 
 ------------------------------------------------------------------------------------------
-## Yolov8
+## YOLOv8
 Source:
 - https://github.com/ultralytics/ultralytics
 - https://docs.ultralytics.com/models/yolov8/
@@ -134,7 +134,7 @@ Source:
 
 
 
-### Yolo Dataset Format
+### YOLO Dataset Format
 
 
 ------------------------------------------------------------------------------------------

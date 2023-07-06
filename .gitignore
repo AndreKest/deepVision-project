@@ -3,7 +3,7 @@
 
 tmp/*
 data/*
-utls/*
+utils/*
 
 src/yolov8Model/datasets/*
 src/yolov8Model/weights/*

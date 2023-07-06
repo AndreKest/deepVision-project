@@ -18,6 +18,7 @@ class Exp(MyExp):
         self.data_dir = "datasets/dataYoloX"
         self.train_ann = "instances_train.json"
         self.val_ann = "instances_val.json"
+        self.test_ann = "instances_test.json"
 
         self.num_classes = 5
 

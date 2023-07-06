@@ -1,5 +1,6 @@
 train: ../datasets/dataYolov8/train/images
 val: ../datasets/dataYolov8/val/images
+test: ../datasets/dataYolov8/test/images
 
 nc: 5
 
