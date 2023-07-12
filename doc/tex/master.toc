@@ -5,23 +5,27 @@
 \contentsline {chapter}{\numberline {2}Datensatz}{2}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Beschreibung}{2}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Klassenaufteilung}{2}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Aufbau}{2}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Rohdaten}{2}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}YOLOX}{2}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}YOLOv8}{2}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.3}Aufbau}{3}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Rohdaten}{3}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}YOLOX}{4}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}YOLOv8}{4}{subsection.2.3.3}%
 \contentsline {chapter}{\numberline {3}Modell 1: YOLOX}{5}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Architektur}{5}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Verlustfunktion}{5}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Modellauswertung}{5}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Modell 2: YOLOv8}{6}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Architektur}{6}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Verlustfunktion}{6}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Modellauswertung}{6}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{7}{chapter.5}%
-\contentsline {chapter}{Literaturverzeichnis}{8}{section*.8}%
-\contentsline {chapter}{Abbildungsverzeichnis}{9}{section*.10}%
-\contentsline {chapter}{\numberline {6}Anhang}{10}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Ordnerstruktur}{10}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{10}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{10}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{10}{section.6.4}%
+\contentsline {subsection}{\numberline {3.1.1}Decoupled Head}{6}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Anchor Free Prediction}{7}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}SimOTA Label Assignment}{7}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Advanced Augmentation}{7}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}Verlustfunktion}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Modellauswertung}{7}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Modell 2: YOLOv8}{8}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Architektur}{8}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Verlustfunktion}{9}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Modellauswertung}{9}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{10}{chapter.5}%
+\contentsline {chapter}{Literaturverzeichnis}{11}{section*.9}%
+\contentsline {chapter}{Abbildungsverzeichnis}{12}{section*.11}%
+\contentsline {chapter}{\numberline {6}Anhang}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Ordnerstruktur}{13}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{13}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{13}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{13}{section.6.4}%

@@ -1,12 +1,13 @@
 \babel@toc {ngerman}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Klassenverteilung der rohen Daten\relax }}{3}{figure.caption.3}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Klassenverteilung der neuen Klassen\relax }}{3}{figure.caption.4}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Aufteilung in Trainings-, Validation- und Testdaten\relax }}{4}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Beispielbilder aus dem Datensatz}}{2}{figure.caption.3}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Klassenverteilung der rohen Daten\relax }}{3}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Aufteilung in Trainings-, Validation- und Testdaten}}{4}{figure.caption.5}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOX}}{5}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Illustration des Unterschieds zwischen dem Yolov3-Head und dem neuen Decoupled-Head }}{7}{figure.caption.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOv8}}{6}{figure.caption.7}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOv8}}{8}{figure.caption.8}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

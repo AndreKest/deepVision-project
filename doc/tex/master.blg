@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: master.aux
+A level-1 auxiliary file: chapter/introduction/introduction.aux
+A level-1 auxiliary file: chapter/main/dataset.aux
+A level-1 auxiliary file: chapter/main/yolovx.aux
+A level-1 auxiliary file: chapter/main/yolov8.aux
+A level-1 auxiliary file: chapter/conclusion/conclusion.aux
+The style file: natdin.bst
+A level-1 auxiliary file: chapter/appendix/appendix.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: literatur.bib
+Warning--entry type for "datasetSelfDrivingCar" isn't style-file defined
+--line 1 of file literatur.bib
+Warning--entry type for "yoloArchitecture" isn't style-file defined
+--line 15 of file literatur.bib
+Warning--entry type for "yoloxExplanationHowWorks" isn't style-file defined
+--line 61 of file literatur.bib
+You've used 5 entries,
+            4728 wiz_defined-function locations,
+            918 strings with 7233 characters,
+and the built_in function-call counts, 2736 in all, are:
+= -- 268
+> -- 84
+< -- 66
++ -- 85
+- -- 27
+* -- 181
+:= -- 503
+add.period$ -- 6
+call.type$ -- 5
+change.case$ -- 24
+chr.to.int$ -- 5
+cite$ -- 5
+duplicate$ -- 83
+empty$ -- 179
+format.name$ -- 50
+if$ -- 531
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 29
+newline$ -- 41
+num.names$ -- 20
+pop$ -- 46
+preamble$ -- 1
+purify$ -- 34
+quote$ -- 0
+skip$ -- 149
+stack$ -- 0
+substring$ -- 118
+swap$ -- 18
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 65
+warning$ -- 0
+while$ -- 24
+width$ -- 0
+write$ -- 78
+(There were 3 warnings)
