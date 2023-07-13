@@ -18,47 +18,49 @@ Warning--entry type for "datasetSelfDrivingCar" isn't style-file defined
 --line 1 of file literatur.bib
 Warning--entry type for "yoloArchitecture" isn't style-file defined
 --line 15 of file literatur.bib
-Warning--entry type for "yoloxExplanationHowWorks" isn't style-file defined
+Warning--entry type for "yoloxBackbone" isn't style-file defined
 --line 61 of file literatur.bib
-You've used 5 entries,
+Warning--entry type for "yoloxExplanationHowWorks" isn't style-file defined
+--line 107 of file literatur.bib
+You've used 8 entries,
             4728 wiz_defined-function locations,
-            918 strings with 7233 characters,
-and the built_in function-call counts, 2736 in all, are:
-= -- 268
-> -- 84
-< -- 66
-+ -- 85
-- -- 27
-* -- 181
-:= -- 503
-add.period$ -- 6
-call.type$ -- 5
-change.case$ -- 24
-chr.to.int$ -- 5
-cite$ -- 5
-duplicate$ -- 83
-empty$ -- 179
-format.name$ -- 50
-if$ -- 531
+            939 strings with 7886 characters,
+and the built_in function-call counts, 5405 in all, are:
+= -- 528
+> -- 190
+< -- 165
++ -- 208
+- -- 65
+* -- 392
+:= -- 984
+add.period$ -- 9
+call.type$ -- 8
+change.case$ -- 45
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 147
+empty$ -- 321
+format.name$ -- 113
+if$ -- 1019
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 29
-newline$ -- 41
-num.names$ -- 20
-pop$ -- 46
+missing$ -- 47
+newline$ -- 56
+num.names$ -- 32
+pop$ -- 80
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 61
 quote$ -- 0
-skip$ -- 149
+skip$ -- 294
 stack$ -- 0
-substring$ -- 118
-swap$ -- 18
-text.length$ -- 9
+substring$ -- 293
+swap$ -- 38
+text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 65
+type$ -- 104
 warning$ -- 0
-while$ -- 24
+while$ -- 47
 width$ -- 0
-write$ -- 78
-(There were 3 warnings)
+write$ -- 117
+(There were 4 warnings)

@@ -1,5 +1,6 @@
 \chapter{Modell 1: YOLOX}\label{chap:yolox}
 \section{Architektur}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\linewidth]{yoloxArchitecture.png}
@@ -9,17 +10,32 @@
 
 Die YOLOX Architektur besteht aus einem Backbone-Netz, dem Neck und einem Head.
 
-Das \textbf{Backbone}-Netzwerk ist für die Extraktion der Merkmale aus dem Bild verantwortlich. YOLOX verwendet das CSPDarknet als Backbone, um Merkmale auf 3 verschiedenen Maßstäben zu extrahieren. Die erste Ausgabe hat eine Dimension von ($H/8$x$W/8$x$256$), die Zweite eine Dimension von ($H/16$x$W/16$x$512$) und die Letzte eine Größe von ($H/32$x$W/32$x$1024$). Die beiden Parameter H und W sind die Höhe und Breite der Eingabe. Diese drei Ausgänge werden an das Neck weitergegeben. Durch die unterschiedlichen Skalierungen kann das Netz Merkmale für verschiedene Größen erzeugen. Der 256-Kanal-Ausgang extrahiert Merkmale mit einer kleineren Skalierung, während der 1024-Kanal-Ausgang Merkmale mit einer größeren Skalierung extrahiert. Mit zunehmender Tiefe des Netzes werden die Feature-Maps kleiner. Dadurch bleibt weniger Information von dem Originalbild erhalten. Die steigende Anzahl der Kanäle soll diesem Effekt entgegenwirken.
+\subsection{Backbone}
+YOLOX verwendet das CSPDarknet als Backbone, um Merkmale auf drei verschiedenen Maßstäben zu extrahieren. Die Ausgänge haben Dimensionen von ($H/8$x$W/8$x$256$), ($H/16$x$W/16$x$512$) und ($H/32$x$W/32$x$1024$). Diese Skalierungen ermöglichen die Erzeugung von Merkmalen für unterschiedliche Größen von Objekten. Durch die erhöhte Anzahl von Kanälen wird der Informationsverlust in den kleineren Feature-Maps ausgeglichen. Die tiefere Feature-Map (auf der Abbildung \ref{fig:yoloxArchitecture.png} unten) besitzt ein größeres Receptive Field und ein Pixel kodiert Informationen über einen größeren Bereich des ursprünglichen Bildes.
 
-Die Ausgaben aus dem Backbone werden im CSP-Pyramid-\textbf{Neck} zu einer Merkmalspyramide verarbeitet, um Objekte unterschiedlicher Größen zu erkennen. Die drei verschiedenen Ausgaben werden wieder miteinander verrechnet (Faltung, Upsampling, Konkatenieren), um sie zu verbinden. Anschließend werden sie mit einem CSP-Layer auf drei unterschiedliche Dimensionen reduziert, um die Ergebnisse in den Head zu geben.
+Das CSPDarknet (Cross Stage Partial) ist eine Modifizierung des ursprünglichen Darknet-Frameworks, das in YOLOv3 schon implementiert wurde. Die Anpassungen bieten Verbesserungen in Bezug auf Geschwindigkeit und Genauigkeit bei der Erkennung von Objekten in Bildern.
 
-Der \textbf{Head} ist die Ausgabeschicht des Netzwerks und enthält die Detektionskomponente. YOLOX verwendet einen Decoupled Head, der aus zwei Teilen besteht. Dieser Mechanismus ist mit YOLOX neu eingeführt worden und wird in Kapitel \ref{decoupledHead} beschrieben.
+CSP steht für Cross Stage Partial Network. Diese Architektur besteht aus einem CSP-Block, der in verschiedenen Stufen des Netzwerks eingefügt ist. Der CSP-Block spaltet den Eingang in zwei Zweige auf, wobei ein Teil unverändert durch den Block läuft und der andere Teil durch eine Kombination aus Faltungsoperationen und Verbindungsschichten verarbeitet wird. Ziel der Kombination ist, dass das Netzwerk auf unterschiedlichen Ebenen des Netzwerks effektiver zu erfassen.
+
+In dem Backbone wird außerdem noch am Ende der Verarbeitung ein SPP verwendet. SPP steht für Spartial Pyramid Pooling. Sie ermöglicht es Objekte unterschiedlicher Größen besser zu erkennen. Dass SPP-Modul teilt das Eingangsbild auf und reduziert die Dimensionen mithilfe von mehreren Pooling Operationen. Die unterschiedlichen Stufen werden anschließend wieder miteinander verbunden und weitergereicht. Ziel dieses Modul ist es Informationen von verschiedenen Skalierungen zu verbinden, um eine verbesserte Erkennung von Objekten zu gewährleisten. \cite{yoloxBackbone}
+
+\subsection{Neck}
+YOLOX verwendet im Neck das PAFPN (Path Aggregation Feature Pyramid Network). Dies ist eine Kombination des PAN (Path Aggregation Network) und dem FPN (Feature Pyramid Network). 
+
+Das PAN ist verantwortlich für ds Zusammenführen von Informationen aus verschiedenen Netzwerkpfaden und die Integration dieser Informationen in einen einzigen Merkmalssatz. Es verbindet die Ausgänge des Backbone-Netzwerks auf unterschiedlichen Skalierungsebenen und passt die Dimensionen durch Upsampling aneinander an. Dadurch soll das Netzwerk ein umfassenderes Verständnis über die aus dem Backbone generierten Merkmale erhalten.
+
+Das FPN ermöglicht eine robuste Objekterkennung in Bildern unterschiedlicher Skalierungen. Das Netzwerk erzeugt eine Hierarchie von Feature-Maps auf verschiedenen Skalierungen und verbindet sie miteinander. Dadurch sollen feine Details und auch semantische Informationen erfasst werden. FPN verwendet top-down und bottom-up-Verbindungen, um die Merkmale auf verschiedenen Ebenen des Netzwerks zu aggregieren. Die mit diesem Verfahren entstehende Merkmalspyramide wird an den Head weitergegeben. \cite{yoloxNeckPAN, yoloxNeckFPN}
 
 
-\subsection{Decoupled Head}\label{decoupledHead}
+\subsection{Head}
+Der Head befindet sich am Ende des Netzwerks und ist für die Vorhersage der Objekte und deren Positionen in den Eingabebildern zuständig. Dort wird die Verlustfunktion berechnet. YOLOX verwendet einen Decoupled Head, der aus zwei Teilen besteht. Dieser Mechanismus ist mit YOLOX neu eingeführt worden und wird in Kapitel \ref{chap:decoupledHead} beschrieben.
+
+
+\section{Methoden}
+\subsection{Decoupled Head}\label{chap:decoupledHead}
 Der Decoupled Head trennt die Vorhersage von Objekten und Bounding Boxes in zwei Zweige auf. Zusätzlich zum Pfad der Bounding-Box wird dort der Konfidenzwert vorhergesagt. Bei den herkömmlichen YOLO-Netzwerken wird die Vorhersage (Klasse, Bounding Box und Konfidenzwert) in einer einzigen Vorhersage gemacht. Dies kann zu Schwierigkeiten bei der Erkennung von Objekten unterschiedlicher Größe führen. 
 
-Wie in der Abbildung \ref{fig:decoupledHead} (unten) zu sehen ist, wird im Decoupled Head die Dimension des Eingangs durch eine 1x1-Faltung reduziert und anschließend in zwei Pfade aufgeteilt. Das bedeutet, dass das Modell zuerst die Präsenz von Objekten vorhersagt und in einem parallelen Zweig die Bounding-Box-Koordinaten und den Objektscore für die erkannten Objekte berechnet. Dieser Head wird für jede drei FPN-Merkmale ausgeführt. \cite{yoloxExplanationHowWorks}
+Wie in der Abbildung \ref{fig:decoupledHead} (unten) zu sehen ist, wird im Decoupled Head die Dimension des Eingangs durch eine 1x1-Faltung reduziert und anschließend in zwei Pfade aufgeteilt. Das bedeutet, dass das Modell zuerst die Präsenz von Objekten vorhersagt und in einem parallelen Zweig die Bounding-Box-Koordinaten und den Objektscore für die erkannten Objekte berechnet. Dieser Head wird für jede der drei Neck-Feature-Maps ausgeführt. \cite{yoloxExplanationHowWorks}
 
 Die drei Tensorausgaben von YOLOX enthalten die gleichen Informationen wie die Ausgänge des großen Tensors von YOLOv3:
 \begin{itemize}
