@@ -7,7 +7,8 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOX}}{5}{figure.caption.6}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Illustration des Unterschieds zwischen dem Yolov3-Head und dem neuen Decoupled-Head }}{8}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Beispielbild nach Anwendung der beiden Data Augmentation Methoden}}{11}{figure.caption.8}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOv8}}{9}{figure.caption.8}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOv8}}{12}{figure.caption.9}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

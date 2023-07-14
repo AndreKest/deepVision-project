@@ -55,18 +55,65 @@ Die drei Tensorausgaben von YOLOX enthalten die gleichen Informationen wie die A
 
 
 
-\subsection{Anchor Free Prediction}
+\subsection{Anchor Free Prediction}\label{chap:anchorFree}
+Bei der \textbf{Anchor-based Prediction} werden vordefinierte Ankerboxen verwendet, um Objekte in verschiedenen Größen zu repräsentieren. Diese Ankerboxen dienen als Referenzpunkte, auf die die Modelle während des Trainings ausgerichtet werden. Das Modell weißt der Ground-Truth (Echten) Box die ähnlichste Ankerbox zu und sagt die Verschiebung und Abmessungen der Ankerbox voraus, um sie dem Objekt anzupassen. Dazu muss vor Beginn des Trainings die Skalierung und Anzahl der Ankerboxen vorgegeben werden. Im Grunde ist eine Ankerbox eine Hilfe für das Modell, damit es nicht direkt eine Bounding Box vorhersagen muss.
 
+
+Die implementierte Methode zur \textbf{Anchor-Free Predictio}n entstammt ursprünglich aus dem Paper ''FCOS: Fully Convolutional One-Stage Object Detection'' \cite{yoloxAnchorFree}. Anstelle von Ankerboxen verwendet die Anchor-Free-Methode ein Grid-basiertes Konzept. Im YOLOX Algorithmus wird eine Stride von 32, 16 und 8 verwendet, um die Ausgabebilder des Necks in ein Gitter zu unterteilen. Wenn ein Stride von 32 für ein 256×256 großes Bild verwendet wird, ergeben sich insgesamt 256/32 = 8 Schnittpunkte in jeder Dimension, also insgesamt 64 Schnittpunkte. Jeder dieser Schnittpunkte heißt Anker-Punkte. Ein Ankerpunkt ist ein Offset, mit dem die (x, y)-Position einer Vorhersage verschoben wird. Die Position des Ankers kann auf dem Bild mit den folgenden Formeln ermittelt werden:
+\begin{align}
+	x = \frac{s}{2} + s*i, \qquad y = \frac{s}{2} + s*j
+\end{align}
+Dabei ist s die Schrittweite, i ist der i-te Schnittpunkt auf der x-Achse und j ist der j-te Schnittpunkt auf der y-Achse. Bei YOLOX werden die Gitterpunkte als linker oberer Offset der Bounding Box verwendet. Die folgenden Formeln werden verwendet, um eine vorhergesagte Bounding Box $(p_x, p_y, p_w, p_h)$ auf die tatsächliche Position auf dem Bild $(l_x, l_y, l_w, l_h)$ abzubilden, wenn (x, y) der Schnittpunkt auf dem Gitter ist, zudem die Vorhersage gehört und s die Schrittweite der aktuellen FPN-Ebene ist:
+\begin{align}
+	l_x=p_x+x, \qquad l_y=p_y+y, \qquad l_w=s*e^{p_w}, \qquad l_h=s*e^{p_h}
+\end{align}
+Wir verschieben den vorhergesagten Punkt, indem wir die Vorhersage zum Anker-Punkt (dem (x,y)-Punkt, der dieser Vorhersage zugewiesen ist) hinzufügen. Durch die e-Funktion wird sichergestellt, dass die Höhe und Breite nicht negativ ist und verschieben diese auf der Grundlage der Schrittweite s eines Bildes. Das Beispiel zu dieser Methode kann in der angegeben Quelle nachgelesen werden. \cite{yoloxExplanationHowWorks}
 
 
 \subsection{SimOTA Label Assignment}
+Die Methode soll die Zuordnung der Vorhersagen zu den Ground-Truth-Objekten optimieren, da nicht alle Vorhersagen gut sind und das Modell nicht versuchen soll diese zu optimieren. Dazu werden die Anker-Punkte der vorherigen Methode von \ref{chap:anchorFree} in positive und negative Gruppen aufgeteilt. Die positive Gruppe beinhaltet ein Objekt und die negative Gruppe beinhaltet kein Objekt.
+
+OTA (Optimal Transport Assignment) ist ein Ansatz, der das Zuordnungsproblem in der Objekterkennung als Optimal Transport (OT)-Problem formuliert. Es geht darum, den besten Plan zu finden, um Güter (Objekte) von Anbietern (Ground-Truth) zu Nachfragern (Vorhersagen oder Anker) zu minimalen Kosten zu transportieren. OTA verwendet OT, um die Labels den Ankerorten zuzuweisen und die Anker als positiv oder negativ zu kennzeichnen. Der Hintergrund wird als zusätzlicher "Lieferant" betrachtet. 
+
+Das Problem des OTA-Algorithmus ist, dass dieser das Training verlangsamt. Aus diesem Grund gibt es eine Vereinfachung des Algorithmus, indem der optimale Zuweisungsplan angenähert wird. Vereinfacht funktioniert der Algorithmus folgendermaßen:
+\begin{itemize}
+	\item Berechne die Klassen- und Regressionsvorhersage für eine gegebene Eingabe durch das Modell.
+	\item Erstelle einen Liefervektor, der das Angebot (durch Dynamic k estimation festgelegt) für jeden der Ground-Truths repräsentiert.
+	\item Initialisiere den Nachfragevektor mit Einsen für jede Vorhersage.
+	\item Berechne die Kosten für Klassenverluste ($FocalLoss(P^{cls}, G^{cls})$), Regressionsverluste ($IoULoss(P^{cls}, G^{cls})$))) und Zentrumsprior zwischen Vorhersagen und Ground-Truths.
+	\item Berechne die Kosten für den Hintergrund und den Vordergrund basierend auf den Kosten der einzelnen Komponenten.
+	\item Konstruiere eine Kostenmatrix, die die Hintergrund- und Vordergrundkosten enthält.
+	\item Wähle die besten Vorhersagen basierend auf den Kosten und dem verfügbaren Angebot.
+	\item Gebe die ausgewählten Vorhersagen zurück.
+\end{itemize}
+
+Der SimOTA-Algorithmus verwendet das Konzept von Angebot und Nachfrage, um die optimale Zuordnung zwischen Vorhersagen und Ground-Truths zu finden. Durch die Berücksichtigung von Kosten und verfügbarem Angebot werden die besten Vorhersagen ausgewählt, um eine präzisere Objekterkennung zu ermöglichen. Der vollständige Algorithmus kann in der angegeben Quelle nachgelesen werden.  \cite{yoloxExplanationSimOTA}
 
 
 \subsection{Advanced Augmentation}
+YOLOX verwendet Advanced Data Augmentation-Techniken wie Mosaic und MixUp, um die Datenvielfalt während des Trainings zu erhöhen und die Leistungsfähigkeit des Modells zu verbessern.
+
+Beim \textbf{Mosaic}-Verfahrenwerden vier zufällig ausgewählte Bilder aus dem Trainingsdatensatz genommen und zu einem Mosaikbild kombiniert. Dabei werden die Bilder in vier quadratische Bereiche aufgeteilt und zu einem einzigen großen Bild zusammengefügt. Die Bounding Boxes der Objekte werden entsprechend angepasst und die Klassenlabels beibehalten. Mithilfe des CutOuts wird ein beliebiger Teil aus dem Bild ausgeschnitten und die Bounding Boxen noch einmal angepasst. Das Mosaikbild wird dann als Eingabe für das Modell verwendet. Der Grund für die Anwendung von Mosaic liegt darin, dass es die Fähigkeit des Modells verbessert, mit komplexen Szenarien und Überlappungen von Objekten umzugehen
+
+\textbf{MixUp} ist eine Technik, bei der zwei zufällig ausgewählte Bilder und ihre entsprechenden Bounding Boxes und Klassenlabel gemischt werden, indem ihre Annotationen gewichtet kombiniert werden. Das erste Bild wird mit $\lambda$ und das zweite Bild mit $1-\lambda$ multipliziert. Die beiden resultierenden Ergebnisse werden addiert. \cite{yoloxExplanationAug}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.55\linewidth]{dataAugmentation.png}
+	\caption[Beispielbild nach Anwendung der beiden Data Augmentation Methoden]{Beispielbild nach Anwendung der beiden Data Augmentation Methoden (links: Mosaic, rechts: MixUp) Quelle: \cite{yoloxExplanationAug}}
+	\label{fig:yoloxExplanationAug}
+\end{figure}
+
 
 
 \section{Verlustfunktion}
+\subsection{Klassen}
 
+
+\subsection{Bounding Box}
+
+
+\subsection{Objectness}
 
 
 \section{Modellauswertung}

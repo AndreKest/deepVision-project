@@ -22,45 +22,53 @@ Warning--entry type for "yoloxBackbone" isn't style-file defined
 --line 61 of file literatur.bib
 Warning--entry type for "yoloxExplanationHowWorks" isn't style-file defined
 --line 107 of file literatur.bib
-You've used 8 entries,
+Warning--entry type for "yoloxExplanationSimOTA" isn't style-file defined
+--line 121 of file literatur.bib
+Warning--entry type for "yoloxExplanationAug" isn't style-file defined
+--line 135 of file literatur.bib
+Repeated entry---line 165 of file literatur.bib
+ : @online{yoloxExplanationSIMOTA
+ :                               ,
+I'm skipping whatever remains of this entry
+You've used 11 entries,
             4728 wiz_defined-function locations,
-            939 strings with 7886 characters,
-and the built_in function-call counts, 5405 in all, are:
-= -- 528
-> -- 190
-< -- 165
-+ -- 208
-- -- 65
-* -- 392
-:= -- 984
-add.period$ -- 9
-call.type$ -- 8
-change.case$ -- 45
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 147
-empty$ -- 321
-format.name$ -- 113
-if$ -- 1019
-int.to.chr$ -- 1
+            954 strings with 8493 characters,
+and the built_in function-call counts, 7216 in all, are:
+= -- 710
+> -- 246
+< -- 211
++ -- 268
+- -- 83
+* -- 527
+:= -- 1304
+add.period$ -- 12
+call.type$ -- 11
+change.case$ -- 60
+chr.to.int$ -- 9
+cite$ -- 11
+duplicate$ -- 200
+empty$ -- 441
+format.name$ -- 146
+if$ -- 1376
+int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 47
-newline$ -- 56
-num.names$ -- 32
-pop$ -- 80
+missing$ -- 65
+newline$ -- 71
+num.names$ -- 44
+pop$ -- 109
 preamble$ -- 1
-purify$ -- 61
+purify$ -- 82
 quote$ -- 0
-skip$ -- 294
+skip$ -- 383
 stack$ -- 0
-substring$ -- 293
-swap$ -- 38
-text.length$ -- 23
+substring$ -- 396
+swap$ -- 54
+text.length$ -- 30
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 104
+type$ -- 143
 warning$ -- 0
-while$ -- 47
+while$ -- 63
 width$ -- 0
-write$ -- 117
-(There were 4 warnings)
+write$ -- 156
+(There was 1 error message)
