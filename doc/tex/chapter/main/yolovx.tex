@@ -108,12 +108,47 @@ Beim \textbf{Mosaic}-Verfahrenwerden vier zufällig ausgewählte Bilder aus dem 
 
 \section{Verlustfunktion}
 \subsection{Klassen}
+Die Gesamtverlustfunktion des Modells setzt sich aus drei einzelnen Verlustfunktionen für die jeweiligen Aufgaben zusammen:
 
+\begin{align}
+	\mathcal{L}^{total}=\frac{1}{N_{pos}}*\mathcal{L}^{cls}+\alpha*\frac{1}{N_{pos}}*	\mathcal{L}^{total}+	\frac{1}{N_{pos}}*\mathcal{L}^{obj}
+\end{align}
+
+Die Verlustfunktion ist dabei die Summe der einzelnen Komponenten, gemittelt über die Menge der positiven Labels. Die positiven Labels sind durch SimOTA (\ref{simota}) berechnet. Der Parameter $\alpha$ ist ein Gewichtungsterm, der von den Autoren des Papers auf $5.0$ festgelegt ist.
+
+\subsection{Klassifikation}\label{chap:yoloxClassification}
+Für die Verlustfunktion des Klassifikationsteils verwendet YOLOX die Binary Cross Entropy (BCE) mit Logits. Dabei handelt es sich um die normale BCE-Funktion mit einer vorgeschalteten Sigmoidfunktion für die Prognosen.
+
+Die Formel lautet:
+\begin{align}
+	\mathcal{L}^{cls}=\frac{1}{N}\sum_{i}^{N}y_i*log(\sigma(\hat{y_i}))+(1-y_i)*log(1-\sigma(\hat{y}_i)),
+\end{align}
+
+wobei $\hat{y}$ der Vektor der Klassenvorhersagen für C Klassen ist. Die Sigmoidfunktion $\sigma$ wird verwendet, um die Elemente in einem Wertebereich von [0,1] zu abzubilden. Die Werte in y sind ein One-Hot-Vektor, der eine 1 für die richtige Klasse und eine 0 für alle anderen Klassen enthält. Die Werte der Vektoren y und $\hat{y}$ stammen aus der positiv gekennzeichneten Menge. Das Ziel des BCE-Verlustes ist, dass das Modell lernt, eine 1 für die richtige Klasse und eine 0 für alle anderen Klassen in der Bounding Box vorherzusagen. \cite{yoloxExplanationHowWorks}
 
 \subsection{Bounding Box}
+In YOLOX wird die IoU (Intersection over Union) Loss Funktion verwendet, um die Regressionsverluste für die Bounding Box Koordinaten zu berechnen. Diese Loss Funktion misst die Ähnlichkeit zwischen der vorhergesagten Bounding Box und der Ground Truth Bounding Box anhand des IoU-Werts.
 
+Der IoU-Wert wird berechnet, indem der Flächenanteil des überlappenden Bereichs der Bounding Boxen durch die Summe der Flächen beider Bounding Boxen geteilt wird. Mathematisch kann der IoU-Wert wie folgt ausgedrückt werden:
+
+\begin{align}
+	IoU = \frac{Area_{Intersection}}{Area_{Unoin}}, \qquad IoU \in [0,1]
+\end{align}
+
+Je höher der IoU-Wert, desto besser ist die Übereinstimmung zwischen der Vorhersage und der Ground Truth Bounding Box.
+
+Die resultierende Verlustfunktion wird folgendermaßen definiert:
+\begin{align}
+	\mathcal{L}^{reg} = \frac{1}{N}\sum_{i}^{N}(1-IoU_i)^2,
+\end{align}
+
+wobei N die Anzahl der positiven Elemente ist und die Bounding Boxen aus dieser Menge entstammen. \cite{yoloxExplanationHowWorks}
 
 \subsection{Objectness}
+Das Ziel des Objectness Loss in YOLOX ist es, dass das Modell einen Wert nahe 1 hat, wenn es glaubt, dass sich ein Objekt in der Bounding Box befindet, einen Wert nahe 0, wenn es glaubt, dass sich nichts in der Box befindet, und einen Wert dazwischen (vorzugsweise etwa 0,5), wenn es unsicher ist.
 
+Um den Wert zu optimieren wird die Binary Cross Entropy with Logits verwendet, die Funktion die auch in \ref{chap:yoloxClassification} verwendet wird. Dabei werden die positiven und negativen Labels von SimOTA verwendet.
+
+Für die positive Vorhersagen wird der IoU-Wert zwischen vorhergesagter und Ground Truth Bounding Box verwendet, um den Wert zu bestimmen, den das Modell vorhersagen soll. Bei negativen Vorhersagen wird der größte IoU-Wert zwischen der vorhergesagten negativen Bounding Box und allen Ground Truth Bounding Boxen verwendet, um die Ground Truth Bounding Box für die negative Vorhersage zu bestimmen. \cite{yoloxExplanationHowWorks}
 
 \section{Modellauswertung}

@@ -20,16 +20,20 @@
 \contentsline {subsection}{\numberline {3.2.3}SimOTA Label Assignment}{9}{subsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.2.4}Advanced Augmentation}{10}{subsection.3.2.4}%
 \contentsline {section}{\numberline {3.3}Verlustfunktion}{11}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Modellauswertung}{11}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Modell 2: YOLOv8}{12}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Architektur}{12}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Verlustfunktion}{13}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Modellauswertung}{13}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{14}{chapter.5}%
-\contentsline {chapter}{Literaturverzeichnis}{15}{section*.10}%
-\contentsline {chapter}{Abbildungsverzeichnis}{17}{section*.12}%
-\contentsline {chapter}{\numberline {6}Anhang}{18}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Ordnerstruktur}{18}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{18}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{18}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{18}{section.6.4}%
+\contentsline {subsection}{\numberline {3.3.1}Klassen}{11}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Klassifikation}{12}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Bounding Box}{12}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Objectness}{13}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}Modellauswertung}{13}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Modell 2: YOLOv8}{14}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Architektur}{14}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Verlustfunktion}{15}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Modellauswertung}{15}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{16}{chapter.5}%
+\contentsline {chapter}{Literaturverzeichnis}{17}{section*.10}%
+\contentsline {chapter}{Abbildungsverzeichnis}{19}{section*.12}%
+\contentsline {chapter}{\numberline {6}Anhang}{20}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Ordnerstruktur}{20}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{20}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{20}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{20}{section.6.4}%
