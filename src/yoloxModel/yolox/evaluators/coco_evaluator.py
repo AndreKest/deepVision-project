@@ -287,6 +287,7 @@ class COCOEvaluator:
                 json.dump(data_dict, open("./yolox_testdev_2017.json", "w"))
                 cocoDt = cocoGt.loadRes("./yolox_testdev_2017.json")
             else:
+                json.dump(data_dict, open("./yolox_evaldev_2017.json", "w"))
                 _, tmp = tempfile.mkstemp()
                 json.dump(data_dict, open(tmp, "w"))
                 cocoDt = cocoGt.loadRes(tmp)
