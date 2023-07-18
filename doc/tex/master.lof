@@ -5,10 +5,11 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Klassenverteilung der rohen Daten\relax }}{3}{figure.caption.4}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Aufteilung in Trainings-, Validation- und Testdaten}}{4}{figure.caption.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOX}}{5}{figure.caption.6}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Illustration des Unterschieds zwischen dem Yolov3-Head und dem neuen Decoupled-Head }}{8}{figure.caption.7}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Beispielbild nach Anwendung der beiden Data Augmentation Methoden}}{11}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOX}}{6}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Illustration des Unterschieds zwischen dem Yolov3-Head und dem neuen Decoupled-Head }}{8}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Beispielbild nach Anwendung der beiden Data Augmentation Methoden}}{11}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOv8}}{14}{figure.caption.20}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \IeC {\"U}bersicht \IeC {\"u}ber die Architektur von YOLOv8}}{14}{figure.caption.9}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Vorhersage der Netzwerke auf vier Beispielbildern aus dem Testdatensatz}}{16}{figure.caption.23}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -9,31 +9,33 @@
 \contentsline {subsection}{\numberline {2.3.1}Rohdaten}{3}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}YOLOX}{4}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}YOLOv8}{4}{subsection.2.3.3}%
-\contentsline {chapter}{\numberline {3}Modell 1: YOLOX}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Architektur}{5}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Backbone}{6}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Neck}{6}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Head}{7}{subsection.3.1.3}%
-\contentsline {section}{\numberline {3.2}Methoden}{7}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Decoupled Head}{7}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Anchor Free Prediction}{8}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}SimOTA Label Assignment}{9}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Advanced Augmentation}{10}{subsection.3.2.4}%
-\contentsline {section}{\numberline {3.3}Verlustfunktion}{11}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Klassen}{11}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Klassifikation}{12}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Bounding Box}{12}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Objectness}{13}{subsection.3.3.4}%
-\contentsline {section}{\numberline {3.4}Modellauswertung}{13}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Modell 2: YOLOv8}{14}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Architektur}{14}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Verlustfunktion}{15}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Modellauswertung}{15}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{16}{chapter.5}%
-\contentsline {chapter}{Literaturverzeichnis}{17}{section*.10}%
-\contentsline {chapter}{Abbildungsverzeichnis}{19}{section*.12}%
-\contentsline {chapter}{\numberline {6}Anhang}{20}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Ordnerstruktur}{20}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{20}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{20}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{20}{section.6.4}%
+\contentsline {chapter}{\numberline {3}\IeC {\"U}bersicht \IeC {\"u}ber die Modelle}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}YOLOX}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Architektur}{5}{subsection.3.1.1}%
+\contentsline {subsubsection}{Backbone}{5}{section*.7}%
+\contentsline {subsubsection}{Neck}{6}{section*.8}%
+\contentsline {subsubsection}{Head}{7}{section*.9}%
+\contentsline {subsection}{\numberline {3.1.2}Methoden}{7}{subsection.3.1.2}%
+\contentsline {subsubsection}{Decoupled Head}{7}{section*.10}%
+\contentsline {subsubsection}{Anchor Free Prediction}{8}{section*.12}%
+\contentsline {subsubsection}{SimOTA Label Assignment}{9}{section*.13}%
+\contentsline {subsubsection}{Advanced Augmentation}{10}{section*.14}%
+\contentsline {subsection}{\numberline {3.1.3}Verlustfunktion}{11}{subsection.3.1.3}%
+\contentsline {subsubsection}{Klassen}{11}{section*.16}%
+\contentsline {subsubsection}{Klassifikation}{12}{section*.17}%
+\contentsline {subsubsection}{Bounding Box}{12}{section*.18}%
+\contentsline {subsubsection}{Objectness}{13}{section*.19}%
+\contentsline {section}{\numberline {3.2}YOLOv8}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Architektur}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Verlustfunktion}{14}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Modellauswertung}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Metriken}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Vorhersage}{16}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{17}{chapter.5}%
+\contentsline {chapter}{Literaturverzeichnis}{18}{section*.24}%
+\contentsline {chapter}{Abbildungsverzeichnis}{20}{section*.26}%
+\contentsline {chapter}{\numberline {6}Anhang}{21}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Ordnerstruktur}{21}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{21}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{21}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{21}{section.6.4}%

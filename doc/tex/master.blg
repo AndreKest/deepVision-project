@@ -3,8 +3,8 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: master.aux
 A level-1 auxiliary file: chapter/introduction/introduction.aux
 A level-1 auxiliary file: chapter/main/dataset.aux
-A level-1 auxiliary file: chapter/main/yolovx.aux
-A level-1 auxiliary file: chapter/main/yolov8.aux
+A level-1 auxiliary file: chapter/main/models.aux
+A level-1 auxiliary file: chapter/main/metrics.aux
 A level-1 auxiliary file: chapter/conclusion/conclusion.aux
 The style file: natdin.bst
 A level-1 auxiliary file: chapter/appendix/appendix.aux
@@ -32,7 +32,7 @@ Repeated entry---line 165 of file literatur.bib
 I'm skipping whatever remains of this entry
 You've used 11 entries,
             4728 wiz_defined-function locations,
-            954 strings with 8493 characters,
+            954 strings with 8494 characters,
 and the built_in function-call counts, 7216 in all, are:
 = -- 710
 > -- 246
