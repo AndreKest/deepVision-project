@@ -30,45 +30,49 @@ Repeated entry---line 165 of file literatur.bib
  : @online{yoloxExplanationSIMOTA
  :                               ,
 I'm skipping whatever remains of this entry
-You've used 11 entries,
+Warning--entry type for "yolov8ModelExplanation" isn't style-file defined
+--line 179 of file literatur.bib
+Warning--entry type for "ciouLoss" isn't style-file defined
+--line 209 of file literatur.bib
+You've used 15 entries,
             4728 wiz_defined-function locations,
-            954 strings with 8494 characters,
-and the built_in function-call counts, 7216 in all, are:
-= -- 710
-> -- 246
-< -- 211
-+ -- 268
-- -- 83
-* -- 527
-:= -- 1304
-add.period$ -- 12
-call.type$ -- 11
-change.case$ -- 60
-chr.to.int$ -- 9
-cite$ -- 11
-duplicate$ -- 200
-empty$ -- 441
-format.name$ -- 146
-if$ -- 1376
+            977 strings with 9368 characters,
+and the built_in function-call counts, 10390 in all, are:
+= -- 1017
+> -- 378
+< -- 322
++ -- 410
+- -- 129
+* -- 771
+:= -- 1893
+add.period$ -- 16
+call.type$ -- 15
+change.case$ -- 87
+chr.to.int$ -- 13
+cite$ -- 15
+duplicate$ -- 279
+empty$ -- 607
+format.name$ -- 225
+if$ -- 1955
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 65
-newline$ -- 71
-num.names$ -- 44
-pop$ -- 109
+missing$ -- 88
+newline$ -- 91
+num.names$ -- 60
+pop$ -- 153
 preamble$ -- 1
-purify$ -- 82
+purify$ -- 117
 quote$ -- 0
-skip$ -- 383
+skip$ -- 556
 stack$ -- 0
-substring$ -- 396
-swap$ -- 54
-text.length$ -- 30
+substring$ -- 570
+swap$ -- 78
+text.length$ -- 46
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 143
+type$ -- 195
 warning$ -- 0
-while$ -- 63
+while$ -- 91
 width$ -- 0
-write$ -- 156
+write$ -- 208
 (There was 1 error message)

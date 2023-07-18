@@ -21,21 +21,26 @@
 \contentsline {subsubsection}{SimOTA Label Assignment}{9}{section*.13}%
 \contentsline {subsubsection}{Advanced Augmentation}{10}{section*.14}%
 \contentsline {subsection}{\numberline {3.1.3}Verlustfunktion}{11}{subsection.3.1.3}%
-\contentsline {subsubsection}{Klassen}{11}{section*.16}%
+\contentsline {subsubsection}{Gesamtverlust}{11}{section*.16}%
 \contentsline {subsubsection}{Klassifikation}{12}{section*.17}%
 \contentsline {subsubsection}{Bounding Box}{12}{section*.18}%
 \contentsline {subsubsection}{Objectness}{13}{section*.19}%
 \contentsline {section}{\numberline {3.2}YOLOv8}{13}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Architektur}{13}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Verlustfunktion}{14}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}Modellauswertung}{15}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Metriken}{15}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Vorhersage}{16}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{17}{chapter.5}%
-\contentsline {chapter}{Literaturverzeichnis}{18}{section*.24}%
-\contentsline {chapter}{Abbildungsverzeichnis}{20}{section*.26}%
-\contentsline {chapter}{\numberline {6}Anhang}{21}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Ordnerstruktur}{21}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{21}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{21}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{21}{section.6.4}%
+\contentsline {subsection}{\numberline {3.2.2}Methoden}{14}{subsection.3.2.2}%
+\contentsline {subsubsection}{TOOD}{14}{section*.21}%
+\contentsline {subsection}{\numberline {3.2.3}Verlustfunktion}{15}{subsection.3.2.3}%
+\contentsline {subsubsection}{Gesamtverlust}{15}{section*.22}%
+\contentsline {subsubsection}{Klassifikation}{15}{section*.23}%
+\contentsline {subsubsection}{Regression}{15}{section*.24}%
+\contentsline {chapter}{\numberline {4}Modellauswertung}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Metriken}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Vorhersage}{18}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{19}{chapter.5}%
+\contentsline {chapter}{Literaturverzeichnis}{20}{section*.28}%
+\contentsline {chapter}{Abbildungsverzeichnis}{22}{section*.30}%
+\contentsline {chapter}{\numberline {6}Anhang}{23}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Ordnerstruktur}{23}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{23}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{23}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{23}{section.6.4}%

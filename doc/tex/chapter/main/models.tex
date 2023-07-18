@@ -71,7 +71,7 @@ Dabei ist s die Schrittweite, i ist der i-te Schnittpunkt auf der x-Achse und j 
 Wir verschieben den vorhergesagten Punkt, indem wir die Vorhersage zum Anker-Punkt (dem (x,y)-Punkt, der dieser Vorhersage zugewiesen ist) hinzufügen. Durch die e-Funktion wird sichergestellt, dass die Höhe und Breite nicht negativ ist und verschieben diese auf der Grundlage der Schrittweite s eines Bildes. Das Beispiel zu dieser Methode kann in der angegeben Quelle nachgelesen werden. \cite{yoloxExplanationHowWorks}
 
 
-\subsubsection{SimOTA Label Assignment}
+\subsubsection{SimOTA Label Assignment}\label{chap:simota}
 Die Methode soll die Zuordnung der Vorhersagen zu den Ground-Truth-Objekten optimieren, da nicht alle Vorhersagen gut sind und das Modell nicht versuchen soll diese zu optimieren. Dazu werden die Anker-Punkte der vorherigen Methode von \ref{chap:anchorFree} in positive und negative Gruppen aufgeteilt. Die positive Gruppe beinhaltet ein Objekt und die negative Gruppe beinhaltet kein Objekt.
 
 OTA (Optimal Transport Assignment) ist ein Ansatz, der das Zuordnungsproblem in der Objekterkennung als Optimal Transport (OT)-Problem formuliert. Es geht darum, den besten Plan zu finden, um Güter (Objekte) von Anbietern (Ground-Truth) zu Nachfragern (Vorhersagen oder Anker) zu minimalen Kosten zu transportieren. OTA verwendet OT, um die Labels den Ankerorten zuzuweisen und die Anker als positiv oder negativ zu kennzeichnen. Der Hintergrund wird als zusätzlicher "Lieferant" betrachtet. 
@@ -91,7 +91,7 @@ Das Problem des OTA-Algorithmus ist, dass dieser das Training verlangsamt. Aus d
 Der SimOTA-Algorithmus verwendet das Konzept von Angebot und Nachfrage, um die optimale Zuordnung zwischen Vorhersagen und Ground-Truths zu finden. Durch die Berücksichtigung von Kosten und verfügbarem Angebot werden die besten Vorhersagen ausgewählt, um eine präzisere Objekterkennung zu ermöglichen. Der vollständige Algorithmus kann in der angegeben Quelle nachgelesen werden.  \cite{yoloxExplanationSimOTA}
 
 
-\subsubsection{Advanced Augmentation}
+\subsubsection{Advanced Augmentation}\label{chap:advancedAug}
 YOLOX verwendet Advanced Data Augmentation-Techniken wie Mosaic und MixUp, um die Datenvielfalt während des Trainings zu erhöhen und die Leistungsfähigkeit des Modells zu verbessern.
 
 Beim \textbf{Mosaic}-Verfahrenwerden vier zufällig ausgewählte Bilder aus dem Trainingsdatensatz genommen und zu einem Mosaikbild kombiniert. Dabei werden die Bilder in vier quadratische Bereiche aufgeteilt und zu einem einzigen großen Bild zusammengefügt. Die Bounding Boxes der Objekte werden entsprechend angepasst und die Klassenlabels beibehalten. Mithilfe des CutOuts wird ein beliebiger Teil aus dem Bild ausgeschnitten und die Bounding Boxen noch einmal angepasst. Das Mosaikbild wird dann als Eingabe für das Modell verwendet. Der Grund für die Anwendung von Mosaic liegt darin, dass es die Fähigkeit des Modells verbessert, mit komplexen Szenarien und Überlappungen von Objekten umzugehen
@@ -108,14 +108,14 @@ Beim \textbf{Mosaic}-Verfahrenwerden vier zufällig ausgewählte Bilder aus dem 
 
 
 \subsection{Verlustfunktion}
-\subsubsection{Klassen}
+\subsubsection{Gesamtverlust}
 Die Gesamtverlustfunktion des Modells setzt sich aus drei einzelnen Verlustfunktionen für die jeweiligen Aufgaben zusammen:
 
 \begin{align}
-	\mathcal{L}^{total}=\frac{1}{N_{pos}}*\mathcal{L}^{cls}+\alpha*\frac{1}{N_{pos}}*	\mathcal{L}^{total}+	\frac{1}{N_{pos}}*\mathcal{L}^{obj}
+	\mathcal{L}^{total}=\frac{1}{N_{pos}}*\mathcal{L}^{cls}+\alpha*\frac{1}{N_{pos}}*	\mathcal{L}^{iou}+	\frac{1}{N_{pos}}*\mathcal{L}^{obj}
 \end{align}
 
-Die Verlustfunktion ist dabei die Summe der einzelnen Komponenten, gemittelt über die Menge der positiven Labels. Die positiven Labels sind durch SimOTA (\ref{simota}) berechnet. Der Parameter $\alpha$ ist ein Gewichtungsterm, der von den Autoren des Papers auf $5.0$ festgelegt ist.
+Die Verlustfunktion ist dabei die Summe der einzelnen Komponenten, gemittelt über die Menge der positiven Labels. Die positiven Labels werden durch SimOTA (\ref{chap:simota}) bestimmt. Der Parameter $\alpha$ ist ein Gewichtungsterm, der von den Autoren des Papers auf $5.0$ festgelegt ist.
 
 \subsubsection{Klassifikation}\label{chap:yoloxClassification}
 Für die Verlustfunktion des Klassifikationsteils verwendet YOLOX die Binary Cross Entropy (BCE) mit Logits. Dabei handelt es sich um die normale BCE-Funktion mit einer vorgeschalteten Sigmoidfunktion für die Prognosen.
@@ -140,7 +140,7 @@ Je höher der IoU-Wert, desto besser ist die Übereinstimmung zwischen der Vorhe
 
 Die resultierende Verlustfunktion wird folgendermaßen definiert:
 \begin{align}
-	\mathcal{L}^{reg} = \frac{1}{N}\sum_{i}^{N}(1-IoU_i)^2,
+	\mathcal{L}^{iou} = \frac{1}{N}\sum_{i}^{N}(1-IoU_i)^2,
 \end{align}
 
 wobei N die Anzahl der positiven Elemente ist und die Bounding Boxen aus dieser Menge entstammen. \cite{yoloxExplanationHowWorks}
@@ -162,14 +162,57 @@ Für die positive Vorhersagen wird der IoU-Wert zwischen vorhergesagter und Grou
 	\label{fig:yolov8Architecture}
 \end{figure}
 
-YOLOv8 basiert ebenfalls auf dem CSPDarknet als Backbone-Netzwerk, das auch von YOLOX verwendet wird. Allerdings gibt es einige Unterschiede in der Architektur. Im Gegensatz zu YOLOX wurde das SPP-Bottleneck-Modul durch ein CSP-Modul ersetzt, und das ConvModule am Ende des Backbones wurde entfernt. Im Neck-Bereich des Netzwerks wurden auch nur minimale Änderungen an einzelnen Layern vorgenommen, wie beispielsweise das Vertauschen der Position einiger ConvModule. Genaueres ist aus der Abbildung \ref{fig:yolov8Architecture} zu entnehmen. Im Head-Bereich wird auch ein Decoupled Head verwendet. Innerhalb des Zweigs für die Bounding Box Regression wurde die Verlustfunktion für den Objectness Score entfernt.
+YOLOv8 basiert ebenfalls auf dem CSPDarknet als \textbf{Backbone}-Netzwerk, das auch von YOLOX verwendet wird. Allerdings gibt es einige Unterschiede in der Architektur. Das CSP-Modul besitzt mehr Skip-Connections, das SPP-Bottleneck-Modul ist durch ein CSP-Modul ersetzt worden und das ConvModule am Ende des Backbones wurde entfernt. Im \textbf{Neck}-Bereich des Netzwerks wurden minimale Änderungen an einzelnen Schichten vorgenommen, wie beispielsweise das Vertauschen der Position einiger ConvModule. Genaueres ist aus der Abbildung \ref{fig:yolov8Architecture} zu entnehmen.
+Der \textbf{Head} des Netzwerks verwendet auch den Decoupled Head mit einer Anchor-Free-Prediction. Innerhalb des Zweigs für die Bounding Box Regression wurde die Verlustfunktion für den Objectness Score entfernt. Ähnlich wie YOLOX verwendet auch YOLOv8 während des Trainings die Mosaic-Augmentierung und die MixUp-Augmentierung. Diese Techniken dienen dazu, die Trainingsdaten zu erweitern und die Robustheit des Modells zu verbessern. \cite{yolov8ModelExplanation}
 
+Für die Funktion des Decoupled Head mit der Anchor-Free-Prediction wird auf Seite \pageref{chap:decoupledHead} und Seite \pageref{chap:anchorFree} verwiesen. Die Datenvorverarbeitung ist unter Kapitel \ref{chap:advancedAug} beschrieben. 
+
+\subsection{Methoden}
+\subsubsection{TOOD}
+Der YOLOv8-Algorithmus übernimmt die Zuweisungsstrategie von TaskAlignedAssigner, da sie als überlegen betrachtet wird. Die TaskAlignedAssigner-Strategie wählt positive Proben basierend auf gewichteten Klassifizierungs- und Regressionsergebnissen aus. 
+
+Die TaskAlignedAssigner verwendet eine Zuweisungsstrategie, bei der für jede Ground-Truth-Bounding Box ein Ausrichtungsmetrik-Wert für jeden Anker berechnet wird. Dieser Wert wird durch das gewichtete Produkt zweier Werte ermittelt: der vorhergesagten Klassifikationspunktzahl der entsprechenden Klasse und dem Intersection over Union (IoU) zwischen der vorhergesagten Bounding Box und der Ground-Truth-Bounding Box. Anschließend werden für jede Ground-Truth-Bounding Box die größten Top-k-Proben basierend auf den Werten der Ausrichtungsmetriken direkt als positive Proben ausgewählt. \cite{yolov8ModelExplanation, yolov8LabelAssignment}
 
 \subsection{Verlustfunktion}
+\subsubsection{Gesamtverlust}
+YOLOv8 verwendet im Klassifikationszweig das BCELoss und im Regressionszweig eine Kombination aus dem Distribution Focal Loss und dem CIoU Loss. Die 3 Teilfunktionen werden anschließend gewichtet summiert:
 
+\begin{align}
+	\mathcal{L}^{total}=\lambda_{cls}*\mathcal{L}^{cls}+\lambda_{iou}\mathcal{L}^{ciou}+	\lambda_{dfl}*\mathcal{L}^{dfl}, 
+\end{align}
 
+wobei $\lambda_{cls}$ auf 7.5, $\lambda_{iou}$ auf 0.5 und $\lambda_{dfl}$ auf 1.5 gesetzt ist.
 
+\subsubsection{Klassifikation} 
+Für die Verlustfunktion der Klassifikation verwendet YOLOv8 die Binary Cross Entropy (BCE) mit Logits. Dabei handelt es sich, um die BCE-Funktion mit einer vorgeschalteten Sigmoidfunktion für die Prognosen.
+Die Formel lautet wie auch bei YOLOX:
+\begin{align}
+	\mathcal{L}^{cls}=\frac{1}{N}\sum_{i}^{N}y_i*log(\sigma(\hat{y_i}))+(1-y_i)*log(1-\sigma(\hat{y}_i)),
+\end{align}
 
+Die Parameter können in Kapitel \ref{chap:yoloxClassification}nachgelesen werden. Die positiven Lables werden allerdings nicht durch SimOTA, sondern durch TOOD berechnet.
 
+\subsubsection{Regression} 
+Die Verlustfunktion für den Regressionzweig besteht aus zwei Teilen. Der erste Teil ist das Complete-IoU-Loss (CIoU). Der CIoU-Verlust führt im Vergleich zum IoU-Verlust zwei neue Konzepte ein:
+\begin{itemize}
+\item Konzept des Mittelpunktabstandes, das den Abstand zwischen dem tatsächlichen Mittelpunkt der Bounding Box und der vorhergesagten Bounding Box berechnet.
+\item Konzept des Seitenverhältnisses, indem es die Seitenverhältnisse der tatsächlichen Box mit den Seitenverhältnissen der vorhergesagten Boxen vergleicht.
+\end{itemize}
 
+Die Formel lautet:
+\begin{align}
+	\mathcal{L}^{iou}=\sum_{i}^{N}(1-CIoU)*weight, \qquad 	CIoU = IoU - \frac{d^2}{c^2}+\alpha*v
+\end{align}
+\begin{align}
+	v=\frac{4}{\pi}(\arctan(\frac{w^{gt}}{h^{gt}})-\arctan(\frac{w^{dt}}{h^{dt}})), \qquad \alpha=\frac{v}{(1-IoU)+v}
+\end{align}
+
+Dabei ist $d^2$ die euklidische Distanz zwischen den Mittelpunkten der Bounding Boxen der Ground Truth (gt) und Vorhersage (dt). Der Parameter $c^2$ ist die Diagonale der kleinsten Box, die beide Bounding Boxen umschließt. Der Parameter $v$ entsteht aus den Seitenverhältnissen der Bounding Boxen und $\alpha$ ist ein Gewichtungsparameter der eine Funktion des IoUs ist. \cite{ciouLoss}
+
+Der zweite Teil des Regressionszweig ist das Distributed Focal Loss. Die Formel für das DFL lautet:
+\begin{align}
+	\mathcal{L}^{dfl}=\frac{1}{N}\sum_{i}^{N}(CE(predDist_i, tl_i)*wl_i+CE(predDist_i, tr_i)*wr_i)
+\end{align}
+
+Das DFL verwendet eine Verteilung der Bounding Boxen, um die Vorhersage genauer anzupassen. Anstatt nur eine Box zu erzeugen, wird eine Verteilung von möglichen Bounding Boxen berücksichtigt. Die Verteilung wird durch die Ankerpunkte und einen maximalen Regressionswert definiert. Der Regressionwert legt fest in welche Bereich die Boxen liegen sollen. Anschließend wird die Cross-Entropy-Funktion (CE) mit dem linken Bereich der Zielverteilung und mit dem rechten Bereich der Zielverteilung berechnet. Die Ergebnisse werden mit, für die Seiten spezifischen Gewichten multipliziert. Eine detaillierte Beschreibung der Verlustfunktion kann im Paper nachgelesen werden. \cite{dflLoss}
 
