@@ -16,16 +16,16 @@ YOLOX verwendet das CSPDarknet als Backbone, um Merkmale auf drei verschiedenen 
 
 Das CSPDarknet (Cross Stage Partial) ist eine Modifizierung des ursprünglichen Darknet-Frameworks, das in YOLOv3 schon implementiert wurde. Die Anpassungen bieten Verbesserungen in Bezug auf Geschwindigkeit und Genauigkeit bei der Erkennung von Objekten in Bildern.
 
-CSP steht für Cross Stage Partial Network. Diese Architektur besteht aus einem CSP-Block, der in verschiedenen Stufen des Netzwerks eingefügt ist. Der CSP-Block spaltet den Eingang in zwei Zweige auf, wobei ein Teil unverändert durch den Block läuft und der andere Teil durch eine Kombination aus Faltungsoperationen und Verbindungsschichten verarbeitet wird. Ziel der Kombination ist, dass das Netzwerk auf unterschiedlichen Ebenen des Netzwerks effektiver zu erfassen.
+CSP steht für Cross Stage Partial Network. Diese Architektur besteht aus einem CSP-Block, der in verschiedenen Stufen des Netzwerks eingefügt ist. Der CSP-Block spaltet den Eingang in zwei Zweige auf, wobei ein Teil unverändert durch den Block läuft und der andere Teil durch eine Kombination aus Faltungsoperationen und Verbindungsschichten verarbeitet wird. Das Ziel dieser Kombination ist es, eine effizientere Erfassung des Netzes auf den verschiedenen Ebenen zu ermöglichen.
 
-In dem Backbone wird außerdem noch am Ende der Verarbeitung ein SPP verwendet. SPP steht für Spartial Pyramid Pooling. Sie ermöglicht es Objekte unterschiedlicher Größen besser zu erkennen. Dass SPP-Modul teilt das Eingangsbild auf und reduziert die Dimensionen mithilfe von mehreren Pooling Operationen. Die unterschiedlichen Stufen werden anschließend wieder miteinander verbunden und weitergereicht. Ziel dieses Modul ist es Informationen von verschiedenen Skalierungen zu verbinden, um eine verbesserte Erkennung von Objekten zu gewährleisten. \cite{yoloxBackbone}
+In dem Backbone wird außerdem noch am Ende der Verarbeitung ein SPP verwendet. SPP steht für Spartial Pyramid Pooling. Sie ermöglicht es Objekte unterschiedlicher Größen besser zu erkennen. Dass SPP-Modul teilt das Eingangsbild auf und reduziert die Dimensionen mithilfe von mehreren Pooling Operationen. Die unterschiedlichen Stufen werden anschließend wieder miteinander verbunden und weitergereicht. Ziel dieses Moduls ist es Informationen von verschiedenen Skalierungen zu verbinden, um eine verbesserte Erkennung von Objekten zu gewährleisten. \cite{yoloxBackbone}
 
 \subsubsection{Neck}
 YOLOX verwendet im Neck das PAFPN (Path Aggregation Feature Pyramid Network). Dies ist eine Kombination des PAN (Path Aggregation Network) und dem FPN (Feature Pyramid Network). 
 
-Das PAN ist verantwortlich für ds Zusammenführen von Informationen aus verschiedenen Netzwerkpfaden und die Integration dieser Informationen in einen einzigen Merkmalssatz. Es verbindet die Ausgänge des Backbone-Netzwerks auf unterschiedlichen Skalierungsebenen und passt die Dimensionen durch Upsampling aneinander an. Dadurch soll das Netzwerk ein umfassenderes Verständnis über die aus dem Backbone generierten Merkmale erhalten.
+Das PAN ist verantwortlich für die Zusammenführung von Informationen aus verschiedenen Netzwerkpfaden und die Integration dieser Informationen in einen einzigen Satz von Merkmalen. Es verbindet die Ausgänge des Backbone-Netzwerks auf unterschiedlichen Skalierungsebenen und passt die Dimensionen durch Upsampling aneinander an. Dadurch soll das Netzwerk ein umfassenderes Verständnis, über die aus dem Backbone generierten Merkmale erhalten.
 
-Das FPN ermöglicht eine robuste Objekterkennung in Bildern unterschiedlicher Skalierungen. Das Netzwerk erzeugt eine Hierarchie von Feature-Maps auf verschiedenen Skalierungen und verbindet sie miteinander. Dadurch sollen feine Details und auch semantische Informationen erfasst werden. FPN verwendet top-down und bottom-up-Verbindungen, um die Merkmale auf verschiedenen Ebenen des Netzwerks zu aggregieren. Die mit diesem Verfahren entstehende Merkmalspyramide wird an den Head weitergegeben. \cite{yoloxNeckPAN, yoloxNeckFPN}
+Das FPN ermöglicht eine robuste Objekterkennung in Bildern unterschiedlicher Skalierungen. Das Netzwerk erzeugt eine Hierarchie von Feature-Maps auf verschiedenen Skalierungen und verbindet sie miteinander. Dadurch sollen feine Details und auch semantische Informationen erfasst werden. FPN verwendet top-down und bottom-up-Verbindungen, um die Merkmale auf verschiedenen Ebenen des Netzwerks zu aggregieren. Die sich daraus ergebende Merkmalspyramide wird an den Head weitergeleitet. \cite{yoloxNeckPAN, yoloxNeckFPN}
 
 
 \subsubsection{Head}
@@ -42,14 +42,14 @@ Die drei Tensorausgaben von YOLOX enthalten die gleichen Informationen wie die A
 \begin{itemize}
 \item Cls: Die Klasse jeder Bounding Box
 \item Reg: Die 4 Teile der Bounding Box
-\item Obj: Wie sicher ist das Netzwerk, dass innerhalb der Bounding Box ein beliebiges Objekt ist
+\item Obj: Wie sicher ist das Netzwerk, das innerhalb der Bounding Box ein beliebiges Objekt ist
 \end{itemize}
 
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.55\linewidth]{decoupledHead.png}
-	\caption[Illustration des Unterschieds zwischen dem Yolov3-Head und dem neuen Decoupled-Head ]{Illustration des Unterschieds zwischen dem YOLOv3-Head und dem neuen Decoupled-Head Quelle: \cite{yoloxPaper}}
+	\caption[Illustration des Unterschieds zwischen dem Yolov3-Head und dem neuen Decoupled-Head ]{Illustration des Unterschieds zwischen dem YOLOv3-Head und dem neuen Decoupled-Head. Quelle: \cite{yoloxPaper}}
 	\label{fig:decoupledHead}
 \end{figure}
 
@@ -57,14 +57,14 @@ Die drei Tensorausgaben von YOLOX enthalten die gleichen Informationen wie die A
 
 
 \subsubsection{Anchor Free Prediction}\label{chap:anchorFree}
-Bei der \textbf{Anchor-based Prediction} werden vordefinierte Ankerboxen verwendet, um Objekte in verschiedenen Größen zu repräsentieren. Diese Ankerboxen dienen als Referenzpunkte, auf die die Modelle während des Trainings ausgerichtet werden. Das Modell weißt der Ground-Truth (Echten) Box die ähnlichste Ankerbox zu und sagt die Verschiebung und Abmessungen der Ankerbox voraus, um sie dem Objekt anzupassen. Dazu muss vor Beginn des Trainings die Skalierung und Anzahl der Ankerboxen vorgegeben werden. Im Grunde ist eine Ankerbox eine Hilfe für das Modell, damit es nicht direkt eine Bounding Box vorhersagen muss.
+Bei der \textbf{Anchor-based Prediction} werden vordefinierte Ankerboxen verwendet, um Objekte in verschiedenen Größen zu repräsentieren. Diese Ankerboxen dienen als Referenzpunkte, auf die die Modelle während des Trainings ausgerichtet werden. Das Modell weist der Ground-Truth (Echten) Box die ähnlichste Ankerbox zu und sagt die Verschiebung und Abmessungen der Ankerbox voraus, um sie dem Objekt anzupassen. Dazu muss vor Beginn des Trainings die Skalierung und Anzahl der Ankerboxen vorgegeben werden. Im Grunde ist eine Ankerbox eine Hilfe für das Modell, damit es nicht direkt eine Bounding Box vorhersagen muss.
 
 
-Die implementierte Methode zur \textbf{Anchor-Free Predictio}n entstammt ursprünglich aus dem Paper ''FCOS: Fully Convolutional One-Stage Object Detection'' \cite{yoloxAnchorFree}. Anstelle von Ankerboxen verwendet die Anchor-Free-Methode ein Grid-basiertes Konzept. Im YOLOX Algorithmus wird eine Stride von 32, 16 und 8 verwendet, um die Ausgabebilder des Necks in ein Gitter zu unterteilen. Wenn ein Stride von 32 für ein 256×256 großes Bild verwendet wird, ergeben sich insgesamt 256/32 = 8 Schnittpunkte in jeder Dimension, also insgesamt 64 Schnittpunkte. Jeder dieser Schnittpunkte heißt Anker-Punkte. Ein Ankerpunkt ist ein Offset, mit dem die (x, y)-Position einer Vorhersage verschoben wird. Die Position des Ankers kann auf dem Bild mit den folgenden Formeln ermittelt werden:
+Die implementierte Methode zur \textbf{Anchor-Free Predictio}n entstammt ursprünglich aus dem Paper ''FCOS: Fully Convolutional One-Stage Object Detection'' \cite{yoloxAnchorFree}. Anstelle von Ankerboxen verwendet die Anchor-Free-Methode ein Grid-basiertes Konzept. Im YOLOX Algorithmus wird eine Stride von 32, 16 und 8 verwendet, um die Ausgabebilder des Necks in ein Gitter zu unterteilen. Wenn ein Stride von 32 für ein 256×256 großes Bild verwendet wird, ergeben sich insgesamt 256/32 = 8 Schnittpunkte in jeder Dimension, also insgesamt 64 Schnittpunkte. Jeder dieser Schnittpunkte heißt Ankerpunkt. Ein Ankerpunkt ist ein Offset, mit dem die (x, y)-Position einer Vorhersage verschoben wird. Die Position des Ankers kann auf dem Bild mit den folgenden Formeln ermittelt werden:
 \begin{align}
 	x = \frac{s}{2} + s*i, \qquad y = \frac{s}{2} + s*j
 \end{align}
-Dabei ist s die Schrittweite, i ist der i-te Schnittpunkt auf der x-Achse und j ist der j-te Schnittpunkt auf der y-Achse. Bei YOLOX werden die Gitterpunkte als linker oberer Offset der Bounding Box verwendet. Die folgenden Formeln werden verwendet, um eine vorhergesagte Bounding Box $(p_x, p_y, p_w, p_h)$ auf die tatsächliche Position auf dem Bild $(l_x, l_y, l_w, l_h)$ abzubilden, wenn (x, y) der Schnittpunkt auf dem Gitter ist, zudem die Vorhersage gehört und s die Schrittweite der aktuellen FPN-Ebene ist:
+Dabei ist \textit{s} die Schrittweite, \textit{i} ist der i-te Schnittpunkt auf der x-Achse und \textit{j} ist der j-te Schnittpunkt auf der y-Achse. Bei YOLOX werden die Gitterpunkte als linker oberer Offset der Bounding Box verwendet. Die folgenden Formeln werden verwendet, um eine vorhergesagte Bounding Box $(p_x, p_y, p_w, p_h)$ auf die tatsächliche Position auf dem Bild $(l_x, l_y, l_w, l_h)$ abzubilden, wenn (x, y) der Schnittpunkt auf dem Gitter ist, zudem die Vorhersage gehört und s die Schrittweite der aktuellen FPN-Ebene ist:
 \begin{align}
 	l_x=p_x+x, \qquad l_y=p_y+y, \qquad l_w=s*e^{p_w}, \qquad l_h=s*e^{p_h}
 \end{align}
@@ -72,9 +72,9 @@ Wir verschieben den vorhergesagten Punkt, indem wir die Vorhersage zum Anker-Pun
 
 
 \subsubsection{SimOTA Label Assignment}\label{chap:simota}
-Die Methode soll die Zuordnung der Vorhersagen zu den Ground-Truth-Objekten optimieren, da nicht alle Vorhersagen gut sind und das Modell nicht versuchen soll diese zu optimieren. Dazu werden die Anker-Punkte der vorherigen Methode von \ref{chap:anchorFree} in positive und negative Gruppen aufgeteilt. Die positive Gruppe beinhaltet ein Objekt und die negative Gruppe beinhaltet kein Objekt.
+Die Methode soll die Zuordnung der Vorhersagen zu den Ground-Truth-Objekten optimieren, da nicht alle Vorhersagen gut sind und das Modell nicht versuchen soll diese zu optimieren. Dazu werden die Ankerpunkte der vorherigen Methode von \ref{chap:anchorFree} in positive und negative Gruppen aufgeteilt.
 
-OTA (Optimal Transport Assignment) ist ein Ansatz, der das Zuordnungsproblem in der Objekterkennung als Optimal Transport (OT)-Problem formuliert. Es geht darum, den besten Plan zu finden, um Güter (Objekte) von Anbietern (Ground-Truth) zu Nachfragern (Vorhersagen oder Anker) zu minimalen Kosten zu transportieren. OTA verwendet OT, um die Labels den Ankerorten zuzuweisen und die Anker als positiv oder negativ zu kennzeichnen. Der Hintergrund wird als zusätzlicher "Lieferant" betrachtet. 
+OTA (Optimal Transport Assignment) ist ein Ansatz, der das Zuordnungsproblem in der Objekterkennung als Optimal Transport (OT)-Problem formuliert. Es geht darum, den besten Plan zu finden, um Güter (Objekte) von Anbietern (Ground-Truth) zu Nachfragern (Vorhersagen oder Anker) zu minimalen Kosten zu transportieren. OTA verwendet OT, um die Labels den Ankerorten zuzuweisen und die Anker als positiv oder negativ zu kennzeichnen. Der Hintergrund wird als zusätzlicher \glqq Lieferant\grqq\ betrachtet. 
 
 Das Problem des OTA-Algorithmus ist, dass dieser das Training verlangsamt. Aus diesem Grund gibt es eine Vereinfachung des Algorithmus, indem der optimale Zuweisungsplan angenähert wird. Vereinfacht funktioniert der Algorithmus folgendermaßen:
 \begin{itemize}
@@ -94,9 +94,9 @@ Der SimOTA-Algorithmus verwendet das Konzept von Angebot und Nachfrage, um die o
 \subsubsection{Advanced Augmentation}\label{chap:advancedAug}
 YOLOX verwendet Advanced Data Augmentation-Techniken wie Mosaic und MixUp, um die Datenvielfalt während des Trainings zu erhöhen und die Leistungsfähigkeit des Modells zu verbessern.
 
-Beim \textbf{Mosaic}-Verfahrenwerden vier zufällig ausgewählte Bilder aus dem Trainingsdatensatz genommen und zu einem Mosaikbild kombiniert. Dabei werden die Bilder in vier quadratische Bereiche aufgeteilt und zu einem einzigen großen Bild zusammengefügt. Die Bounding Boxes der Objekte werden entsprechend angepasst und die Klassenlabels beibehalten. Mithilfe des CutOuts wird ein beliebiger Teil aus dem Bild ausgeschnitten und die Bounding Boxen noch einmal angepasst. Das Mosaikbild wird dann als Eingabe für das Modell verwendet. Der Grund für die Anwendung von Mosaic liegt darin, dass es die Fähigkeit des Modells verbessert, mit komplexen Szenarien und Überlappungen von Objekten umzugehen
+Beim \textbf{Mosaic}-Verfahren werden vier zufällig ausgewählte Bilder aus dem Trainingsdatensatz genommen und zu einem Mosaikbild kombiniert. Dabei werden die Bilder in vier quadratische Bereiche aufgeteilt und zu einem einzigen großen Bild zusammengefügt. Die Bounding Boxes der Objekte werden entsprechend angepasst und die Klassenlabels beibehalten. Mithilfe des CutOuts wird ein beliebiger Teil aus dem Bild ausgeschnitten und die Bounding Boxen noch einmal angepasst. Das Mosaikbild wird dann als Eingabe für das Modell verwendet. Der Grund für die Verwendung von Mosaic ist, dass es die Fähigkeit des Modells verbessert, mit komplexen Szenarien und Objektüberlappungen umzugehen.
 
-\textbf{MixUp} ist eine Technik, bei der zwei zufällig ausgewählte Bilder und ihre entsprechenden Bounding Boxes und Klassenlabel gemischt werden, indem ihre Annotationen gewichtet kombiniert werden. Das erste Bild wird mit $\lambda$ und das zweite Bild mit $1-\lambda$ multipliziert. Die beiden resultierenden Ergebnisse werden addiert. \cite{yoloxExplanationAug}
+\textbf{MixUp} ist eine Technik, bei der zwei zufällig ausgewählte Bilder und ihre entsprechenden Bounding Boxen und Klassenlabel gemischt werden, indem ihre Annotationen gewichtet kombiniert werden. Das erste Bild wird mit $\lambda$ und das zweite Bild mit $1-\lambda$ multipliziert. Die beiden resultierenden Ergebnisse werden addiert. \cite{yoloxExplanationAug}
 
 \begin{figure}[h]
 	\centering
@@ -118,14 +118,14 @@ Die Gesamtverlustfunktion des Modells setzt sich aus drei einzelnen Verlustfunkt
 Die Verlustfunktion ist dabei die Summe der einzelnen Komponenten, gemittelt über die Menge der positiven Labels. Die positiven Labels werden durch SimOTA (\ref{chap:simota}) bestimmt. Der Parameter $\alpha$ ist ein Gewichtungsterm, der von den Autoren des Papers auf $5.0$ festgelegt ist.
 
 \subsubsection{Klassifikation}\label{chap:yoloxClassification}
-Für die Verlustfunktion des Klassifikationsteils verwendet YOLOX die Binary Cross Entropy (BCE) mit Logits. Dabei handelt es sich um die normale BCE-Funktion mit einer vorgeschalteten Sigmoidfunktion für die Prognosen.
+Für die Verlustfunktion des Klassifikationsteils, verwendet YOLOX die Binary Cross Entropy (BCE) mit Logits. Dabei handelt es sich um die normale BCE-Funktion mit einer vorgeschalteten Sigmoidfunktion für die Prognosen.
 
 Die Formel lautet:
 \begin{align}
-	\mathcal{L}^{cls}=\frac{1}{N}\sum_{i}^{N}y_i*log(\sigma(\hat{y_i}))+(1-y_i)*log(1-\sigma(\hat{y}_i)),
+	\mathcal{L}^{cls}=\frac{1}{N}\sum_{i}^{N}y_i*log(\sigma(\hat{y_i}))+(1-y_i)*log(1-\sigma(\hat{y}_i))\text{,}
 \end{align}
 
-wobei $\hat{y}$ der Vektor der Klassenvorhersagen für C Klassen ist. Die Sigmoidfunktion $\sigma$ wird verwendet, um die Elemente in einem Wertebereich von [0,1] zu abzubilden. Die Werte in y sind ein One-Hot-Vektor, der eine 1 für die richtige Klasse und eine 0 für alle anderen Klassen enthält. Die Werte der Vektoren y und $\hat{y}$ stammen aus der positiv gekennzeichneten Menge. Das Ziel des BCE-Verlustes ist, dass das Modell lernt, eine 1 für die richtige Klasse und eine 0 für alle anderen Klassen in der Bounding Box vorherzusagen. \cite{yoloxExplanationHowWorks}
+wobei $\hat{y}$ der Vektor der Klassenvorhersagen für C Klassen ist. Die Sigmoidfunktion $\sigma$ wird verwendet, um die Elemente in einem Wertebereich von [0,1] abzubilden. Die Werte in y sind ein One-Hot-Vektor, der eine 1 für die richtige Klasse und eine 0 für alle anderen Klassen enthält. Die Werte der Vektoren y und $\hat{y}$ stammen aus der positiv gekennzeichneten Menge. Das Ziel des BCE-Verlustes ist, dass das Modell lernt, eine 1 für die richtige Klasse und eine 0 für alle anderen Klassen in der Bounding Box vorherzusagen. \cite{yoloxExplanationHowWorks}
 
 \subsubsection{Bounding Box}
 In YOLOX wird die IoU (Intersection over Union) Loss Funktion verwendet, um die Regressionsverluste für die Bounding Box Koordinaten zu berechnen. Diese Loss Funktion misst die Ähnlichkeit zwischen der vorhergesagten Bounding Box und der Ground Truth Bounding Box anhand des IoU-Werts.
@@ -133,14 +133,14 @@ In YOLOX wird die IoU (Intersection over Union) Loss Funktion verwendet, um die 
 Der IoU-Wert wird berechnet, indem der Flächenanteil des überlappenden Bereichs der Bounding Boxen durch die Summe der Flächen beider Bounding Boxen geteilt wird. Mathematisch kann der IoU-Wert wie folgt ausgedrückt werden:
 
 \begin{align}
-	IoU = \frac{Area_{Intersection}}{Area_{Unoin}}, \qquad IoU \in [0,1]
+	IoU = \frac{Area_{Intersection}}{Area_{Unoin}}\text{,} \qquad IoU \in [0,1]
 \end{align}
 
 Je höher der IoU-Wert, desto besser ist die Übereinstimmung zwischen der Vorhersage und der Ground Truth Bounding Box.
 
 Die resultierende Verlustfunktion wird folgendermaßen definiert:
 \begin{align}
-	\mathcal{L}^{iou} = \frac{1}{N}\sum_{i}^{N}(1-IoU_i)^2,
+	\mathcal{L}^{iou} = \frac{1}{N}\sum_{i}^{N}(1-IoU_i)^2 \text{,}
 \end{align}
 
 wobei N die Anzahl der positiven Elemente ist und die Bounding Boxen aus dieser Menge entstammen. \cite{yoloxExplanationHowWorks}
@@ -150,7 +150,7 @@ Das Ziel des Objectness Loss in YOLOX ist es, dass das Modell einen Wert nahe 1 
 
 Um den Wert zu optimieren wird die Binary Cross Entropy with Logits verwendet, die Funktion die auch in \ref{chap:yoloxClassification} verwendet wird. Dabei werden die positiven und negativen Labels von SimOTA verwendet.
 
-Für die positive Vorhersagen wird der IoU-Wert zwischen vorhergesagter und Ground Truth Bounding Box verwendet, um den Wert zu bestimmen, den das Modell vorhersagen soll. Bei negativen Vorhersagen wird der größte IoU-Wert zwischen der vorhergesagten negativen Bounding Box und allen Ground Truth Bounding Boxen verwendet, um die Ground Truth Bounding Box für die negative Vorhersage zu bestimmen. \cite{yoloxExplanationHowWorks}
+Für die positiven Vorhersagen wird der IoU-Wert zwischen vorhergesagter und Ground Truth Bounding Box verwendet, um den Wert zu bestimmen, den das Modell vorhersagen soll. Bei negativen Vorhersagen wird der größte IoU-Wert zwischen der vorhergesagten negativen Bounding Box und allen Ground Truth Bounding Boxen verwendet, um die Ground Truth Bounding Box für die negative Vorhersage zu bestimmen. \cite{yoloxExplanationHowWorks}
 
 
 \section{YOLOv8}\label{chap:yolov8}
@@ -169,16 +169,16 @@ Für die Funktion des Decoupled Head mit der Anchor-Free-Prediction wird auf Sei
 
 \subsection{Methoden}
 \subsubsection{TOOD}
-Der YOLOv8-Algorithmus übernimmt die Zuweisungsstrategie von TaskAlignedAssigner, da sie als überlegen betrachtet wird. Die TaskAlignedAssigner-Strategie wählt positive Proben basierend auf gewichteten Klassifizierungs- und Regressionsergebnissen aus. 
+Der YOLOv8-Algorithmus übernimmt die Zuweisungsstrategie von TaskAlignedAssigner, da sie als überlegen betrachtet wird. Die TaskAlignedAssigner-Strategie wählt positive Proben, basierend auf gewichteten Klassifizierungs- und Regressionsergebnissen, aus. 
 
-Die TaskAlignedAssigner verwendet eine Zuweisungsstrategie, bei der für jede Ground-Truth-Bounding Box ein Ausrichtungsmetrik-Wert für jeden Anker berechnet wird. Dieser Wert wird durch das gewichtete Produkt zweier Werte ermittelt: der vorhergesagten Klassifikationspunktzahl der entsprechenden Klasse und dem Intersection over Union (IoU) zwischen der vorhergesagten Bounding Box und der Ground-Truth-Bounding Box. Anschließend werden für jede Ground-Truth-Bounding Box die größten Top-k-Proben basierend auf den Werten der Ausrichtungsmetriken direkt als positive Proben ausgewählt. \cite{yolov8ModelExplanation, yolov8LabelAssignment}
+Die TaskAlignedAssigner verwendet eine Zuweisungsstrategie, bei der für jede Ground-Truth-Bounding Box ein Ausrichtungsmetrik-Wert für jeden Anker berechnet wird. Dieser Wert wird durch das gewichtete Produkt zweier Werte ermittelt: der vorhergesagten Klassifikationspunktzahl der entsprechenden Klasse und dem Intersection over Union (IoU) zwischen der vorhergesagten Bounding Box und der Ground-Truth-Bounding Box. Anschließend werden für jede Ground-Truth-Bounding Box die größten Top-k-Proben basierend auf den Werten der Ausrichtungsmetriken, direkt als positive Proben ausgewählt. \cite{yolov8ModelExplanation, yolov8LabelAssignment}
 
 \subsection{Verlustfunktion}
 \subsubsection{Gesamtverlust}
 YOLOv8 verwendet im Klassifikationszweig das BCELoss und im Regressionszweig eine Kombination aus dem Distribution Focal Loss und dem CIoU Loss. Die 3 Teilfunktionen werden anschließend gewichtet summiert:
 
 \begin{align}
-	\mathcal{L}^{total}=\lambda_{cls}*\mathcal{L}^{cls}+\lambda_{iou}\mathcal{L}^{ciou}+	\lambda_{dfl}*\mathcal{L}^{dfl}, 
+	\mathcal{L}^{total}=\lambda_{cls}*\mathcal{L}^{cls}+\lambda_{iou}\mathcal{L}^{ciou}+	\lambda_{dfl}*\mathcal{L}^{dfl} \text{,}
 \end{align}
 
 wobei $\lambda_{cls}$ auf 7.5, $\lambda_{iou}$ auf 0.5 und $\lambda_{dfl}$ auf 1.5 gesetzt ist.
@@ -187,7 +187,7 @@ wobei $\lambda_{cls}$ auf 7.5, $\lambda_{iou}$ auf 0.5 und $\lambda_{dfl}$ auf 1
 Für die Verlustfunktion der Klassifikation verwendet YOLOv8 die Binary Cross Entropy (BCE) mit Logits. Dabei handelt es sich, um die BCE-Funktion mit einer vorgeschalteten Sigmoidfunktion für die Prognosen.
 Die Formel lautet wie auch bei YOLOX:
 \begin{align}
-	\mathcal{L}^{cls}=\frac{1}{N}\sum_{i}^{N}y_i*log(\sigma(\hat{y_i}))+(1-y_i)*log(1-\sigma(\hat{y}_i)),
+	\mathcal{L}^{cls}=\frac{1}{N}\sum_{i}^{N}y_i*log(\sigma(\hat{y_i}))+(1-y_i)*log(1-\sigma(\hat{y}_i)) \text{,}
 \end{align}
 
 Die Parameter können in Kapitel \ref{chap:yoloxClassification}nachgelesen werden. Die positiven Lables werden allerdings nicht durch SimOTA, sondern durch TOOD berechnet.
@@ -196,7 +196,7 @@ Die Parameter können in Kapitel \ref{chap:yoloxClassification}nachgelesen werde
 Die Verlustfunktion für den Regressionzweig besteht aus zwei Teilen. Der erste Teil ist das Complete-IoU-Loss (CIoU). Der CIoU-Verlust führt im Vergleich zum IoU-Verlust zwei neue Konzepte ein:
 \begin{itemize}
 \item Konzept des Mittelpunktabstandes, das den Abstand zwischen dem tatsächlichen Mittelpunkt der Bounding Box und der vorhergesagten Bounding Box berechnet.
-\item Konzept des Seitenverhältnisses, indem es die Seitenverhältnisse der tatsächlichen Box mit den Seitenverhältnissen der vorhergesagten Boxen vergleicht.
+\item Konzept des Seitenverhältnisses, indem es die Seitenverhältnisse der tatsächlichen Box, mit den Seitenverhältnissen der vorhergesagten Boxen vergleicht.
 \end{itemize}
 
 Die Formel lautet:
@@ -207,12 +207,12 @@ Die Formel lautet:
 	v=\frac{4}{\pi}(\arctan(\frac{w^{gt}}{h^{gt}})-\arctan(\frac{w^{dt}}{h^{dt}})), \qquad \alpha=\frac{v}{(1-IoU)+v}
 \end{align}
 
-Dabei ist $d^2$ die euklidische Distanz zwischen den Mittelpunkten der Bounding Boxen der Ground Truth (gt) und Vorhersage (dt). Der Parameter $c^2$ ist die Diagonale der kleinsten Box, die beide Bounding Boxen umschließt. Der Parameter $v$ entsteht aus den Seitenverhältnissen der Bounding Boxen und $\alpha$ ist ein Gewichtungsparameter der eine Funktion des IoUs ist. \cite{ciouLoss}
+Dabei ist $d^2$ die euklidische Distanz zwischen den Mittelpunkten der Bounding Boxen der Ground Truth (gt) und Vorhersage (dt). Der Parameter $c^2$ ist die Diagonale der kleinsten Box, die beide Bounding Boxen umschließt. Der Parameter $v$ entsteht aus den Seitenverhältnissen der Bounding Boxen und $\alpha$ ist ein Gewichtungsparameter, der eine Funktion des IoUs ist. \cite{ciouLoss}
 
-Der zweite Teil des Regressionszweig ist das Distributed Focal Loss. Die Formel für das DFL lautet:
+Der zweite Teil des Regressionszweigs ist das Distributed Focal Loss. Die Formel für das DFL lautet:
 \begin{align}
 	\mathcal{L}^{dfl}=\frac{1}{N}\sum_{i}^{N}(CE(predDist_i, tl_i)*wl_i+CE(predDist_i, tr_i)*wr_i)
 \end{align}
 
-Das DFL verwendet eine Verteilung der Bounding Boxen, um die Vorhersage genauer anzupassen. Anstatt nur eine Box zu erzeugen, wird eine Verteilung von möglichen Bounding Boxen berücksichtigt. Die Verteilung wird durch die Ankerpunkte und einen maximalen Regressionswert definiert. Der Regressionwert legt fest in welche Bereich die Boxen liegen sollen. Anschließend wird die Cross-Entropy-Funktion (CE) mit dem linken Bereich der Zielverteilung und mit dem rechten Bereich der Zielverteilung berechnet. Die Ergebnisse werden mit, für die Seiten spezifischen Gewichten multipliziert. Eine detaillierte Beschreibung der Verlustfunktion kann im Paper nachgelesen werden. \cite{dflLoss}
+Das DFL verwendet eine Verteilung der Bounding Boxen, um die Vorhersage genauer anzupassen. Anstatt nur eine Box zu erzeugen, wird eine Verteilung von möglichen Bounding Boxen berücksichtigt. Die Verteilung wird durch die Ankerpunkte und einen maximalen Regressionswert definiert. Der Regressionwert legt fest, in welchen Bereich die Boxen liegen sollen. Anschließend wird die Cross-Entropy-Funktion (CE) mit dem linken Bereich der Zielverteilung und mit dem rechten Bereich der Zielverteilung berechnet. Die Ergebnisse werden mit den für die Seiten spezifischen Gewichten multipliziert. Eine detaillierte Beschreibung der Verlustfunktion kann im Paper nachgelesen werden. \cite{dflLoss}
 

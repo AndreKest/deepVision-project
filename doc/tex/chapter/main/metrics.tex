@@ -1,10 +1,10 @@
 \chapter{Modellauswertung}
 \section{Metriken}
-Der mAP (mean Average Precision) ist eine Metrik zur Bewertung der Leistung von Objekterkennungsmodellen. Der mAP-Wert wird für verschiedene IoU-Schwellenwerte berechnet. mAP@0.5:0.95 deckt einen großen Bereich von IoU-Schwellen ab. Der mAP@0.5 gibt an, wie gut das Modell Objekte bei einer IoU-Schwelle von 0,5 erkennt. mAP@0.75 gibt die Leistung bei einer höheren IoU-Schwelle von 0,75 an. Diese Metriken bewerten die Erkennungs- und Lokalisierungsgenauigkeit des Modells bei verschiedenen Überlappungsschwellen (IoU-Werten). Sie dienen dem Vergleich und der Bewertung der Modelle. Ein höherer mAP-Wert bedeutet eine bessere Leistung bei der Erkennung von Objekten mit dieser spezifischen Überlappungsschwelle.
+Der mAP (mean Average Precision) ist eine Metrik, mit der die Leistung von Modellen zur Objekterkennung bewertet werden kann. Der mAP-Wert wird für verschiedene IoU-Schwellenwerte berechnet. mAP@0.5:0.95 deckt einen großen Bereich von IoU-Schwellen ab. Der mAP@0.5 gibt an, wie gut das Modell Objekte bei einer IoU-Schwelle von 0,5 erkennt. mAP@0.75 gibt die Leistung bei einer höheren IoU-Schwelle von 0,75 an. Diese Metriken bewerten die Erkennungs- und Lokalisierungsgenauigkeit des Modells bei verschiedenen Überlappungsschwellen (IoU-Werten). Sie dienen dem Vergleich und der Bewertung der Modelle. Ein höherer mAP-Wert bedeutet eine bessere Leistung bei der Erkennung von Objekten mit dieser spezifischen Überlappungsschwelle.
 
 Die beiden Tabellen \ref{tab:metricVal} und \ref{tab:metricTest} liefern eine Bewertung der Leistung von YOLOX und YOLOv8 anhand verschiedener Metriken. Die erste Tabelle basiert auf dem Validierungsdatensatz, der während des Trainings zur Validierung verwendet wurde, während die zweite Tabelle den unabhängigen Testdatensatz zeigt, der zu Beginn der Arbeit abgespalten wurde.
 
-Bei dem Vergleich der Gesamtleistung des Modells (Klasse: all) ist YOLOv8 in allen Werten um 2 \% besser als YOLOX. Die ähnlichen mAP-Werte Im direkten Vergleich der einzelnen Klassen besitzt YOLOv8 ebenfalls einen höheren mAP-Wert. Die relativ ähnlichen Werte lassen sich vermutlich auf die ähnlichen Architekturen der beiden Modelle zurückführen.
+Bei dem Vergleich der Gesamtleistung des Modells (Klasse: all) ist YOLOv8 in allen Werten um 2 \% besser als YOLOX. Die relativ ähnlichen Werte sind wahrscheinlich auf die ähnliche Architektur der beiden Modelle zurückzuführen.
 
 \begin{table}[!ht]
 	\centering
@@ -20,7 +20,7 @@ Bei dem Vergleich der Gesamtleistung des Modells (Klasse: all) ist YOLOv8 in all
 		\textbf{truck} & 0.628 & \textbf{0.646} & 0.864 & \textbf{0.877} & 0.726 & \textbf{0.743} \\
 		\textbf{biker} & 0.403 & \textbf{0.412} & 0.696 & \textbf{0.713} & 0.412 & \textbf{0.416} \\ \hline
 	\end{tabular}
-	\caption{Vergleich der mAP Werte für den Validierungsdatensatz}
+	\caption{Vergleich der mAP Werte für den Validierungsdatensatz. Quelle: Eigene Darstellung}
 	\label{tab:metricVal}
 \end{table}
 
@@ -38,7 +38,7 @@ Bei dem Vergleich der Gesamtleistung des Modells (Klasse: all) ist YOLOv8 in all
 		\textbf{truck} & 0.594 & \textbf{0.612} & 0.83 & \textbf{0.835} & 0.665 & \textbf{0.696} \\
 		\textbf{biker} & \textbf{0.431} & 0.414 & 0.732 & \textbf{0.741} & \textbf{0.484} & 0.406 \\ \hline
 	\end{tabular}
-	\caption{Vergleich der mAP Werte für den Testdatensatz}
+	\caption{Vergleich der mAP Werte für den Testdatensatz. Quelle: Eigene Darstellung}
 	\label{tab:metricTest}
 \end{table}
 
@@ -56,7 +56,7 @@ In der Abbildung \ref{fig:predictionNetworks} ist auf der linken Seite die Ausga
 	\begin{subfigure}[b]{0.35\textwidth}
 		\includegraphics[width=\textwidth]{predictYOLOv8.png}
 	\end{subfigure}
-	\caption[Vorhersage der Netzwerke auf vier Beispielbildern aus dem Testdatensatz]{Vorhersage der Netzwerke auf vier Beispielbildern aus dem Testdatensatz. (links: YOLOX, rechts: YOLOv8) Quelle: Eigene Aufnahme}
+	\caption[Vorhersage der Netzwerke auf vier Beispielbildern aus dem Testdatensatz]{Vorhersage der Netzwerke auf vier Beispielbildern aus dem Testdatensatz (links: YOLOX, rechts: YOLOv8). Quelle: Eigene Aufnahme}
 	\label{fig:predictionNetworks}
 \end{figure}
 
