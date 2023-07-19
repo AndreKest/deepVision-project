@@ -17,62 +17,62 @@ Database file #1: literatur.bib
 Warning--entry type for "datasetSelfDrivingCar" isn't style-file defined
 --line 1 of file literatur.bib
 Warning--entry type for "yoloArchitecture" isn't style-file defined
---line 15 of file literatur.bib
+--line 33 of file literatur.bib
 Warning--entry type for "yoloxBackbone" isn't style-file defined
---line 61 of file literatur.bib
+--line 79 of file literatur.bib
 Warning--entry type for "yoloxExplanationHowWorks" isn't style-file defined
---line 107 of file literatur.bib
+--line 125 of file literatur.bib
 Warning--entry type for "yoloxExplanationSimOTA" isn't style-file defined
---line 121 of file literatur.bib
+--line 139 of file literatur.bib
 Warning--entry type for "yoloxExplanationAug" isn't style-file defined
---line 135 of file literatur.bib
-Repeated entry---line 165 of file literatur.bib
+--line 153 of file literatur.bib
+Repeated entry---line 183 of file literatur.bib
  : @online{yoloxExplanationSIMOTA
  :                               ,
 I'm skipping whatever remains of this entry
 Warning--entry type for "yolov8ModelExplanation" isn't style-file defined
---line 179 of file literatur.bib
+--line 197 of file literatur.bib
 Warning--entry type for "ciouLoss" isn't style-file defined
---line 209 of file literatur.bib
-You've used 15 entries,
+--line 227 of file literatur.bib
+You've used 16 entries,
             4728 wiz_defined-function locations,
-            977 strings with 9368 characters,
-and the built_in function-call counts, 10390 in all, are:
-= -- 1017
-> -- 378
-< -- 322
-+ -- 410
-- -- 129
-* -- 771
-:= -- 1893
-add.period$ -- 16
-call.type$ -- 15
-change.case$ -- 87
-chr.to.int$ -- 13
-cite$ -- 15
-duplicate$ -- 279
-empty$ -- 607
-format.name$ -- 225
-if$ -- 1955
+            983 strings with 9496 characters,
+and the built_in function-call counts, 10837 in all, are:
+= -- 1059
+> -- 388
+< -- 330
++ -- 420
+- -- 132
+* -- 797
+:= -- 1971
+add.period$ -- 18
+call.type$ -- 16
+change.case$ -- 91
+chr.to.int$ -- 14
+cite$ -- 16
+duplicate$ -- 295
+empty$ -- 644
+format.name$ -- 231
+if$ -- 2048
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 88
-newline$ -- 91
-num.names$ -- 60
-pop$ -- 153
+missing$ -- 94
+newline$ -- 97
+num.names$ -- 64
+pop$ -- 160
 preamble$ -- 1
-purify$ -- 117
+purify$ -- 123
 quote$ -- 0
-skip$ -- 556
+skip$ -- 583
 stack$ -- 0
-substring$ -- 570
-swap$ -- 78
-text.length$ -- 46
+substring$ -- 589
+swap$ -- 80
+text.length$ -- 47
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 195
+type$ -- 208
 warning$ -- 0
-while$ -- 91
+while$ -- 95
 width$ -- 0
-write$ -- 208
+write$ -- 222
 (There was 1 error message)
