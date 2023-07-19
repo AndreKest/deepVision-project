@@ -9,11 +9,15 @@ Train the two Yolo networks (YolovX and Yolov8) with the Udacity Self Driving Ca
 
 ------------------------------------------------------------------------------------------
 ### Weights
-To download the pretrained and the trained weights you need to make a few steps!
+To download the Repo use "download.zip" variant
+
+To download the pretrained and the trained weights you need to make a few steps over ssh!
 - git clone <repo>
 - git lfs pull 
 
 You need to install git lfs to downlaod the files!
+
+
 
 
 ------------------------------------------------------------------------------------------
