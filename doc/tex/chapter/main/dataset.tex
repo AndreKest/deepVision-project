@@ -13,7 +13,7 @@ Die Bilder in dem Datensatz umfassen verschiedene Szenarien im Straßenverkehr. 
 
 
 \section{Klassenaufteilung}
-Die ursprüngliche Klasseneinteilung ist in Abbildung \ref{fig:classDistributionRaw} dargestellt. Dort lässt sich erkennen, dass insbesondere die Aufteilung der Klasse \textit{Ampel} in Unterkategorien unterrepräsentiert ist. Um dieses Problem zu umgehen, wurden die \textit{Ampel}-Klassen zu einer Klasse \textit{trafficLight} zusammengeführt. Für das Auswerten des Datensatzes wurde dieser mit dem passenden Skript (datasetPreprocessing.ipynb) in einen Trainings-, Validierungs- und Testdatensatz aufgeteilt. Diese Aufteilung kann aus den farblichen Säulen in Abbildung \ref{fig:datasetTrainValTestSplit} entnommen werden. Eine weitere Bearbeitung des Datensatzes wurde nicht vorgenommen, um zu überprüfen, wie die verwendeten Netzwerke mit einem unbalancierten Datensatz umgehen. 
+Die ursprüngliche Klasseneinteilung ist in Abbildung \ref{fig:classDistributionRaw} dargestellt. Dort lässt sich erkennen, dass insbesondere die Aufteilung der Klasse \textit{Ampel} in Unterkategorien unterrepräsentiert ist. Um dieses Problem zu umgehen, wurden die \textit{Ampel}-Klassen zu einer Klasse \textit{trafficLight} zusammengeführt. Für das Training der Modelle wurde der Datensatz mit dem passenden Skript (datasetPreprocessing.ipynb) in einen Trainings-, Validierungs- und Testdatensatz aufgeteilt. Diese Aufteilung kann aus den farblichen Säulen in Abbildung \ref{fig:datasetTrainValTestSplit} entnommen werden. Eine weitere Bearbeitung des Datensatzes wurde nicht vorgenommen, um zu überprüfen, wie die verwendeten Netzwerke mit einem unbalancierten Datensatz umgehen. 
 
 \begin{figure}
 	\begin{subfigure}{0.5\textwidth}
@@ -60,18 +60,18 @@ Die ursprüngliche Klasseneinteilung ist in Abbildung \ref{fig:classDistribution
 
 \section{Aufbau}
 \subsection{Rohdaten}
-Die Rohdaten sind in einem Ordner gespeichert. Dieser Ordner enthält die Bilder im .jpg-Format und eine .csv-Datei in der alle Annotationen enthalten sind. Der Header der Datei enthält den Dateinamen des Bildes, die Breite und Höhe, die Klasse und die vier Bounding Box Koordinaten zu jedem Objekt.
+Die Rohdaten sind in einem Ordner gespeichert. Dieser Ordner enthält die Bilder im jpg-Format und eine csv-Datei in der alle Annotationen enthalten sind. Der Header der Datei enthält den Dateinamen des Bildes, die Breite und Höhe, die Klasse und die vier Bounding Box Koordinaten zu jedem Objekt.
 
 Die folgenden Umwandlungen in die Formate werden mit dem Skript \textit{datasetConvertion.ipynb} gemacht. Die jeweiligen Ordnerstrukturen können in Kapitel \ref{chap:appendix} nachgelesen werden.
 
 
 \subsection{YOLOX}
-Das Netzwerk kann das COCO-Format und das PASCAL VOC-Format verarbeiten. In der folgenden Arbeit wird das COCO-Format verwendet. Zu diesem Zweck werden die Annotationen in einem separaten Ordner und die jeweiligen Bilddateien für Training, Validierung und Test, ebenfalls in einem separaten Ordner abgelegt. Die Annotationen zu den drei Teildatensätzen liegen im .json-Format vor. Dabei wird jeder Klasse, jedem Bild und jeder Annotation eine ID zugewiesen, die die Zuordnung der Objekte zu den jeweiligen Bildern ermöglicht. 
+Das Netzwerk kann das COCO-Format und das PASCAL VOC-Format verarbeiten. In der folgenden Arbeit wird das COCO-Format verwendet. Zu diesem Zweck werden die Annotationen in einem separaten Ordner und die jeweiligen Bilddateien für Training, Validierung und Test, ebenfalls in einem separaten Ordner abgelegt. Die Annotationen zu den drei Teildatensätzen liegen im json-Format vor. Dabei wird jeder Klasse, jedem Bild und jeder Annotation eine ID zugewiesen, die die Zuordnung der Objekte zu den jeweiligen Bildern ermöglicht. 
 
 
 
 \subsection{YOLOv8}
-Dieses Netzwerk verwendet das YOLO-Format. Dabei werden die Bilder für Training, Validierung und Test in einem separaten Ordner gespeichert. Die dazugehörigen Labels stehen in einzelnen .txt-Dateien. Jedes Bild erhält eine zugehörige Textdatei mit dem gleichen Namen wie das Bild und der Struktur Klasse, x-Zentrum, y-Zentrum, Breite und Höhe. Die Koordinaten müssen auf die Bildgröße normiert sein. Die Labels liegen in einer korrespondierenden Ordnerstruktur. Die zugehörige Konfigurationsdatei gibt anschließend den Pfad zu den Datensatz und die Anzahl der Klassen an. 
+Dieses Netzwerk verwendet das YOLO-Format. Dabei werden die Bilder für Training, Validierung und Test in einem separaten Ordner gespeichert. Die dazugehörigen Labels stehen in txt-Dateien. Jedes Bild erhält eine zugehörige Textdatei mit dem gleichen Namen wie das Bild und der Struktur Klasse, x-Zentrum, y-Zentrum, Breite und Höhe. Die Koordinaten müssen auf die Bildgröße normiert sein. Die Labels liegen in einer korrespondierenden Ordnerstruktur. Die zugehörige Konfigurationsdatei gibt anschließend den Pfad zu den Datensatz und die Anzahl der Klassen an. 
 
 
 

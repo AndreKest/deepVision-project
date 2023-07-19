@@ -41,6 +41,6 @@
 \contentsline {chapter}{Abbildungsverzeichnis}{22}{section*.30}%
 \contentsline {chapter}{\numberline {6}Anhang}{23}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Ordnerstruktur}{23}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{23}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{23}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{23}{section.6.4}%
+\contentsline {section}{\numberline {6.2}Dateien: Datensatz}{24}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Dateien: YOLOX}{24}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Dateien: YOLOv8}{25}{section.6.4}%

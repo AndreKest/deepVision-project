@@ -30,6 +30,7 @@ kiwisolver==1.4.0
 ultralytics==8.0.124
 
 # Utils
+dill==0.3.6
 tensorboard==2.11.2
 loguru==0.7.0
 tqdm==4.64.1

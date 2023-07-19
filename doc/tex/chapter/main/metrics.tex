@@ -1,10 +1,10 @@
-\chapter{Modellauswertung}
+\chapter{Modellauswertung}\label{chap:metrics}
 \section{Metriken}
-Der mAP (mean Average Precision) ist eine Metrik, mit der die Leistung von Modellen zur Objekterkennung bewertet werden kann. Der mAP-Wert wird für verschiedene IoU-Schwellenwerte berechnet. mAP@0.5:0.95 deckt einen großen Bereich von IoU-Schwellen ab. Der mAP@0.5 gibt an, wie gut das Modell Objekte bei einer IoU-Schwelle von 0,5 erkennt. mAP@0.75 gibt die Leistung bei einer höheren IoU-Schwelle von 0,75 an. Diese Metriken bewerten die Erkennungs- und Lokalisierungsgenauigkeit des Modells bei verschiedenen Überlappungsschwellen (IoU-Werten). Sie dienen dem Vergleich und der Bewertung der Modelle. Ein höherer mAP-Wert bedeutet eine bessere Leistung bei der Erkennung von Objekten mit dieser spezifischen Überlappungsschwelle.
+Der mAP (mean Average Precision) ist eine Metrik, mit der die Leistung von Modellen zur Objekterkennung bewertet werden kann. Der mAP-Wert wird für verschiedene IoU-Schwellenwerte berechnet. mAP@0.5:0.95 deckt einen großen Bereich von IoU-Schwellen ab. Der mAP@0.5 gibt an, wie gut das Modell Objekte bei einer IoU-Schwelle von 0.5 erkennt. mAP@0.75 gibt die Leistung bei einer höheren IoU-Schwelle von 0.75 an. Diese Metriken bewerten die Erkennungs- und Lokalisierungsgenauigkeit des Modells bei verschiedenen Überlappungsschwellen (IoU-Werten). Sie dienen dem Vergleich und der Bewertung der Modelle. Ein höherer mAP-Wert bedeutet eine bessere Leistung bei der Erkennung von Objekten mit dieser spezifischen Überlappungsschwelle.
 
 Die beiden Tabellen \ref{tab:metricVal} und \ref{tab:metricTest} liefern eine Bewertung der Leistung von YOLOX und YOLOv8 anhand verschiedener Metriken. Die erste Tabelle basiert auf dem Validierungsdatensatz, der während des Trainings zur Validierung verwendet wurde, während die zweite Tabelle den unabhängigen Testdatensatz zeigt, der zu Beginn der Arbeit abgespalten wurde.
 
-Bei dem Vergleich der Gesamtleistung des Modells (Klasse: all) ist YOLOv8 in allen Werten um 2 \% besser als YOLOX. Die relativ ähnlichen Werte sind wahrscheinlich auf die ähnliche Architektur der beiden Modelle zurückzuführen.
+Bei dem Vergleich der Gesamtleistung des Modells (Klasse: all) ist YOLOv8 in allen Werten um 2 \% besser als YOLOX. Die relativ ähnlichen Werte sind wahrscheinlich auf die ähnliche Architektur der beiden Modelle zurückzuführen. Die Erhöhung der Leistung ist auf die Verwendung des DFL zurückzuführen.
 
 \begin{table}[!ht]
 	\centering

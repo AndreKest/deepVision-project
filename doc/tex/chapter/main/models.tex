@@ -12,7 +12,7 @@
 Die YOLOX Architektur besteht aus einem Backbone-Netz, dem Neck und einem Head.
 
 \subsubsection{Backbone}
-YOLOX verwendet das CSPDarknet als Backbone, um Merkmale auf drei verschiedenen Maßstäben zu extrahieren. Die Ausgänge haben Dimensionen von ($H/8$x$W/8$x$256$), ($H/16$x$W/16$x$512$) und ($H/32$x$W/32$x$1024$). Diese Skalierungen ermöglichen die Erzeugung von Merkmalen für unterschiedliche Größen von Objekten. Durch die erhöhte Anzahl von Kanälen wird der Informationsverlust in den kleineren Feature-Maps ausgeglichen. Die tiefere Feature-Map (auf der Abbildung \ref{fig:yoloxArchitecture.png} unten) besitzt ein größeres Receptive Field und ein Pixel kodiert Informationen über einen größeren Bereich des ursprünglichen Bildes.
+YOLOX verwendet das CSPDarknet als Backbone, um Merkmale auf drei verschiedenen Ebenen zu extrahieren. Die Ausgänge haben Dimensionen von ($H/8$x$W/8$x$256$), ($H/16$x$W/16$x$512$) und ($H/32$x$W/32$x$1024$). Diese Skalierungen ermöglichen die Erzeugung von Merkmalen für unterschiedliche Größen von Objekten. Durch die erhöhte Anzahl von Kanälen wird der Informationsverlust in den kleineren Feature-Maps ausgeglichen. Die tiefere Feature-Map (auf der Abbildung \ref{fig:yoloxArchitecture.png} unten) besitzt ein größeres Receptive Field und ein Pixel kodiert Informationen über einen größeren Bereich des ursprünglichen Bildes.
 
 Das CSPDarknet (Cross Stage Partial) ist eine Modifizierung des ursprünglichen Darknet-Frameworks, das in YOLOv3 schon implementiert wurde. Die Anpassungen bieten Verbesserungen in Bezug auf Geschwindigkeit und Genauigkeit bei der Erkennung von Objekten in Bildern.
 
@@ -34,7 +34,7 @@ Der Head befindet sich am Ende des Netzwerks und ist für die Vorhersage der Obj
 
 \subsection{Methoden}
 \subsubsection{Decoupled Head}\label{chap:decoupledHead}
-Der Decoupled Head trennt die Vorhersage von Objekten und Bounding Boxes in zwei Zweige auf. Zusätzlich zum Pfad der Bounding-Box wird dort der Konfidenzwert vorhergesagt. Bei den herkömmlichen YOLO-Netzwerken wird die Vorhersage (Klasse, Bounding Box und Konfidenzwert) in einer einzigen Vorhersage gemacht. Dies kann zu Schwierigkeiten bei der Erkennung von Objekten unterschiedlicher Größe führen. 
+Der Decoupled Head trennt die Vorhersage von Objekten und Bounding-Boxes in zwei Zweige auf. Zusätzlich zum Pfad der Bounding-Box wird dort der Konfidenzwert vorhergesagt. Bei den herkömmlichen YOLO-Netzwerken wird die Vorhersage (Klasse, Bounding Box und Konfidenzwert) in einer einzigen Vorhersage gemacht. Dies kann zu Schwierigkeiten bei der Erkennung von Objekten unterschiedlicher Größe führen. 
 
 Wie in der Abbildung \ref{fig:decoupledHead} (unten) zu sehen ist, wird im Decoupled Head die Dimension des Eingangs durch eine 1x1-Faltung reduziert und anschließend in zwei Pfade aufgeteilt. Das bedeutet, dass das Modell zuerst die Präsenz von Objekten vorhersagt und in einem parallelen Zweig die Bounding-Box-Koordinaten und den Objektscore für die erkannten Objekte berechnet. Dieser Head wird für jede der drei Neck-Feature-Maps ausgeführt. \cite{yoloxExplanationHowWorks}
 
@@ -88,7 +88,7 @@ Das Problem des OTA-Algorithmus ist, dass dieser das Training verlangsamt. Aus d
 	\item Gebe die ausgewählten Vorhersagen zurück.
 \end{itemize}
 
-Der SimOTA-Algorithmus verwendet das Konzept von Angebot und Nachfrage, um die optimale Zuordnung zwischen Vorhersagen und Ground-Truths zu finden. Durch die Berücksichtigung von Kosten und verfügbarem Angebot werden die besten Vorhersagen ausgewählt, um eine präzisere Objekterkennung zu ermöglichen. Der vollständige Algorithmus kann in der angegeben Quelle nachgelesen werden.  \cite{yoloxExplanationSimOTA}
+Der SimOTA-Algorithmus verwendet das Konzept von Angebot und Nachfrage, um die optimale Zuordnung zwischen Vorhersagen und Ground-Truths zu finden. Durch die Berücksichtigung von Kosten und verfügbaren Angebot werden die besten Vorhersagen ausgewählt, um eine präzisere Objekterkennung zu ermöglichen. Der vollständige Algorithmus kann in der angegeben Quelle nachgelesen werden.  \cite{yoloxExplanationSimOTA}
 
 
 \subsubsection{Advanced Augmentation}\label{chap:advancedAug}
@@ -133,12 +133,12 @@ In YOLOX wird die IoU (Intersection over Union) Loss Funktion verwendet, um die 
 Der IoU-Wert wird berechnet, indem der Flächenanteil des überlappenden Bereichs der Bounding Boxen durch die Summe der Flächen beider Bounding Boxen geteilt wird. Mathematisch kann der IoU-Wert wie folgt ausgedrückt werden:
 
 \begin{align}
-	IoU = \frac{Area_{Intersection}}{Area_{Unoin}}\text{,} \qquad IoU \in [0,1]
+	IoU = \frac{Area_{Intersection}}{Area_{Union}}\text{,} \qquad IoU \in [0,1]
 \end{align}
 
 Je höher der IoU-Wert, desto besser ist die Übereinstimmung zwischen der Vorhersage und der Ground Truth Bounding Box.
 
-Die resultierende Verlustfunktion wird folgendermaßen definiert:
+Die resultierende Verlustfunktion ist folgendermaßen definiert:
 \begin{align}
 	\mathcal{L}^{iou} = \frac{1}{N}\sum_{i}^{N}(1-IoU_i)^2 \text{,}
 \end{align}
@@ -146,11 +146,11 @@ Die resultierende Verlustfunktion wird folgendermaßen definiert:
 wobei N die Anzahl der positiven Elemente ist und die Bounding Boxen aus dieser Menge entstammen. \cite{yoloxExplanationHowWorks}
 
 \subsubsection{Objectness}
-Das Ziel des Objectness Loss in YOLOX ist es, dass das Modell einen Wert nahe 1 hat, wenn es glaubt, dass sich ein Objekt in der Bounding Box befindet, einen Wert nahe 0, wenn es glaubt, dass sich nichts in der Box befindet, und einen Wert dazwischen (vorzugsweise etwa 0.5), wenn es unsicher ist.
+Das Ziel des Objectness Loss in YOLOX ist es, dass das Modell einen Wert nahe 1 hat, wenn es schätzt, dass sich ein Objekt in der Bounding Box befindet, einen Wert nahe 0, wenn es schätzt, dass sich nichts in der Box befindet, und einen Wert dazwischen (vorzugsweise etwa 0.5), wenn es unsicher ist.
 
 Um den Wert zu optimieren wird die Binary Cross Entropy with Logits verwendet, die Funktion die auch in \ref{chap:yoloxClassification} verwendet wird. Dabei werden die positiven und negativen Labels von SimOTA verwendet.
 
-Für die positiven Vorhersagen wird der IoU-Wert zwischen vorhergesagter und Ground Truth Bounding Box verwendet, um den Wert zu bestimmen, den das Modell vorhersagen soll. Bei negativen Vorhersagen wird der größte IoU-Wert zwischen der vorhergesagten negativen Bounding Box und allen Ground Truth Bounding Boxen verwendet, um die Ground Truth Bounding Box für die negative Vorhersage zu bestimmen. \cite{yoloxExplanationHowWorks}
+Für die positiven Vorhersagen wird der IoU-Wert zwischen vorhergesagter und Ground Truth Bounding Box verwendet, um den Wert zu bestimmen, den das Modell vorhersagen soll. Bei negativen Vorhersagen wird der größte IoU-Wert zwischen der vorhergesagten negativen Bounding Box und allen Ground Truth Bounding Boxen verwendet, um die Ground Truth Werte für die negativen Vorhersagen zu bestimmen. \cite{yoloxExplanationHowWorks}
 
 
 \section{YOLOv8}\label{chap:yolov8}
@@ -162,20 +162,20 @@ Für die positiven Vorhersagen wird der IoU-Wert zwischen vorhergesagter und Gro
 	\label{fig:yolov8Architecture}
 \end{figure}
 
-YOLOv8 basiert ebenfalls auf dem CSPDarknet als \textbf{Backbone}-Netzwerk, das auch von YOLOX verwendet wird. Allerdings gibt es einige Unterschiede in der Architektur. Das CSP-Modul besitzt mehr Skip-Connections, das SPP-Bottleneck-Modul ist durch ein CSP-Modul ersetzt worden und das ConvModule am Ende des Backbones wurde entfernt. Im \textbf{Neck}-Bereich des Netzwerks wurden minimale Änderungen an einzelnen Schichten vorgenommen, wie beispielsweise das Vertauschen der Position einiger ConvModule. Genaueres ist aus der Abbildung \ref{fig:yolov8Architecture} zu entnehmen.
+YOLOv8 basiert ebenfalls auf dem CSPDarknet als \textbf{Backbone}-Netzwerk, das auch von YOLOX verwendet wird. Allerdings gibt es einige Unterschiede in der Architektur. Das CSP-Modul besitzt mehr Skip-Connections, das SPP-Bottleneck-Modul ist mit einem CSP-Modul vertauscht worden und das ConvModule am Ende des Backbones wurde entfernt. Im \textbf{Neck}-Bereich des Netzwerks wurden minimale Änderungen an einzelnen Schichten vorgenommen, wie beispielsweise das Vertauschen der Position einiger ConvModule. Genaueres ist aus der Abbildung \ref{fig:yolov8Architecture} zu entnehmen.
 Der \textbf{Head} des Netzwerks verwendet auch den Decoupled Head mit einer Anchor-Free-Prediction. Innerhalb des Zweigs für die Bounding Box Regression wurde die Verlustfunktion für den Objectness Score entfernt. Ähnlich wie YOLOX verwendet auch YOLOv8 während des Trainings die Mosaic-Augmentierung und die MixUp-Augmentierung. Diese Techniken dienen dazu, die Trainingsdaten zu erweitern und die Robustheit des Modells zu verbessern. \cite{yolov8ModelExplanation}
 
 Für die Funktion des Decoupled Head mit der Anchor-Free-Prediction wird auf Seite \pageref{chap:decoupledHead} und Seite \pageref{chap:anchorFree} verwiesen. Die Datenvorverarbeitung ist unter Kapitel \ref{chap:advancedAug} beschrieben. 
 
 \subsection{Methoden}
 \subsubsection{TOOD}
-Der YOLOv8-Algorithmus übernimmt die Zuweisungsstrategie von TaskAlignedAssigner, da sie als überlegen betrachtet wird. Die TaskAlignedAssigner-Strategie wählt positive Proben, basierend auf gewichteten Klassifizierungs- und Regressionsergebnissen, aus. 
+Der YOLOv8-Algorithmus übernimmt die Zuweisungsstrategie von TaskAlignedAssigner, da sie als effektiv angesehen wird. Die TaskAlignedAssigner-Strategie wählt positive Proben, basierend auf gewichteten Klassifizierungs- und Regressionsergebnissen, aus. 
 
 Die TaskAlignedAssigner verwendet eine Zuweisungsstrategie, bei der für jede Ground-Truth-Bounding Box ein Ausrichtungsmetrik-Wert für jeden Anker berechnet wird. Dieser Wert wird durch das gewichtete Produkt zweier Werte ermittelt: der vorhergesagten Klassifikationspunktzahl der entsprechenden Klasse und dem Intersection over Union (IoU) zwischen der vorhergesagten Bounding Box und der Ground-Truth-Bounding Box. Anschließend werden für jede Ground-Truth-Bounding Box die größten Top-k-Proben basierend auf den Werten der Ausrichtungsmetriken, direkt als positive Proben ausgewählt. \cite{yolov8ModelExplanation, yolov8LabelAssignment}
 
 \subsection{Verlustfunktion}
 \subsubsection{Gesamtverlust}
-YOLOv8 verwendet im Klassifikationszweig das BCELoss und im Regressionszweig eine Kombination aus dem Distribution Focal Loss und dem CIoU Loss. Die 3 Teilfunktionen werden anschließend gewichtet summiert:
+YOLOv8 verwendet im Klassifikationszweig das BCELoss und im Regressionszweig eine Kombination aus dem Distribution Focal Loss und dem CIoU Loss. Die drei Teilfunktionen werden anschließend gewichtet summiert:
 
 \begin{align}
 	\mathcal{L}^{total}=\lambda_{cls}*\mathcal{L}^{cls}+\lambda_{iou}\mathcal{L}^{ciou}+	\lambda_{dfl}*\mathcal{L}^{dfl} \text{,}
@@ -190,7 +190,7 @@ Die Formel lautet wie auch bei YOLOX:
 	\mathcal{L}^{cls}=\frac{1}{N}\sum_{i}^{N}y_i*log(\sigma(\hat{y_i}))+(1-y_i)*log(1-\sigma(\hat{y}_i)) \text{,}
 \end{align}
 
-Die Parameter können in Kapitel \ref{chap:yoloxClassification}nachgelesen werden. Die positiven Lables werden allerdings nicht durch SimOTA, sondern durch TOOD berechnet.
+Die Parameter können in Kapitel \ref{chap:yoloxClassification} nachgelesen werden. Die positiven Lables werden allerdings nicht durch SimOTA, sondern durch TOOD berechnet.
 
 \subsubsection{Regression} 
 Die Verlustfunktion für den Regressionzweig besteht aus zwei Teilen. Der erste Teil ist das Complete-IoU-Loss (CIoU). Der CIoU-Verlust führt im Vergleich zum IoU-Verlust zwei neue Konzepte ein:
