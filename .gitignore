@@ -6,7 +6,7 @@ data/*
 utils/*
 
 src/yolov8Model/datasets/*
-src/yolov8Model/weights/*
+# src/yolov8Model/weights/*
 # src/yolov8Model/runs/*
 src/yoloxModel/datasets/*
 # src/yoloxModel/weights/*
