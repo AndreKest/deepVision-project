@@ -6,13 +6,23 @@ Was build for a project at my university.
 Task:
 Train the two Yolo networks (YolovX and Yolov8) with the Udacity Self Driving Car dataset. Work out the differences between the two architectures and compare the accuracy of the two networks.
 
+
+------------------------------------------------------------------------------------------
+### Weights
+To download the pretrained and the trained weights you need to make a few steps!
+- git clone <repo>
+- git lfs pull 
+
+You need to install git lfs to downlaod the files!
+
+
 ------------------------------------------------------------------------------------------
 ### Folder structure
 #### Overview
 deepvision-project/  
 ├── data                    &emsp;# Dataset (images and annotation)  
 &emsp; ├── dataFiltered     &emsp;# Filtered data (merged classes, train/val/test split)  
-&emsp; ├── dataRaw          &emsp;# Raw data [^1^]  
+&emsp; ├── dataRaw          &emsp;# Raw data [1]  
 &emsp; ├── dataYolov8       &emsp;# Data in format for Yolov8 (*datasetConvertion.ipynb*)  
 &emsp; └── dataYoloX        &emsp;# Data in format for YoloX  (*datasetConvertion.ipynb*)  
 ├── src                     &emsp;# Main data ipynb and py files  
